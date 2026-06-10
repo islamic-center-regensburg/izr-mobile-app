@@ -1,3 +1,4 @@
+// stores/lang-store.ts
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
@@ -8,6 +9,7 @@ const DEFAULT_LANG: SupportedLanguage = "de";
 
 interface LangState {
   lang: SupportedLanguage;
+  hydrated: boolean;
   setLang: (lang: SupportedLanguage) => void;
   resetLang: () => void;
 }
@@ -23,6 +25,9 @@ const langStore = create<LangState>()(
     {
       name: "st-lang",
       storage: createJSONStorage(() => AsyncStorage),
+      onRehydrateStorage: () => (state) => {
+        if (state) state.hydrated = true;
+      },
     },
   ),
 );

@@ -1,21 +1,26 @@
+// store/font-size.ts
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-const DEFAULT_FONT_SIZE = 16;
+export type FontSizeScale = "sm" | "md" | "lg";
 
-interface FontSizeState {
-  fontSize: number;
-  setFontSize: (size: number) => void;
-  resetFontSize: () => void;
-}
+type FontSizeStore = {
+  scale: FontSizeScale;
+  setScale: (scale: FontSizeScale) => void;
+};
 
-const fontSizeStore = create<FontSizeState>()(
+export const FONT_SCALE = {
+  sm: 1,
+  md: 1.2,
+  lg: 1.4,
+} as const;
+
+export const fontSizeStore = create<FontSizeStore>()(
   persist(
     (set) => ({
-      fontSize: DEFAULT_FONT_SIZE,
-      resetFontSize: () => set({ fontSize: DEFAULT_FONT_SIZE }),
-      setFontSize: (size: number) => set({ fontSize: size }),
+      scale: "sm",
+      setScale: (scale) => set({ scale }),
     }),
     {
       name: "st-font-size",

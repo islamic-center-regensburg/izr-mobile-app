@@ -1,6 +1,7 @@
 import React from "react";
 
-import type { VariantProps } from "@gluestack-ui/utils/nativewind-utils";
+import { SizeKey, useRTL } from "@/src/hooks/use-rtl";
+import { cn, type VariantProps } from "@gluestack-ui/utils/nativewind-utils";
 import { Text as RNText } from "react-native";
 import { textStyle } from "./styles";
 
@@ -19,10 +20,13 @@ const Text = React.forwardRef<React.ComponentRef<typeof RNText>, ITextProps>(
       sub,
       italic,
       highlight,
+      style,
       ...props
     },
     ref,
   ) {
+    const { getTextStyle, isRTL } = useRTL();
+
     return (
       <RNText
         className={textStyle({
@@ -34,10 +38,10 @@ const Text = React.forwardRef<React.ComponentRef<typeof RNText>, ITextProps>(
           sub: sub as boolean,
           italic: italic as boolean,
           highlight: highlight as boolean,
-          class: className,
+          class: cn(isRTL ? "text-right" : "text-left", className),
         })}
         {...props}
-        style={{}}
+        style={[getTextStyle(size as SizeKey), style]}
         ref={ref}
       />
     );

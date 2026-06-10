@@ -1,36 +1,15 @@
-import { StyleSheet, View } from "react-native";
-import { Button, ButtonText } from "../components/button";
-import { HStack } from "../components/hstack";
-import { StorageDebug } from "../components/storage-debug";
-import { useLangStore } from "../store/lang";
+import { Redirect } from "expo-router";
+import { useTranslation } from "react-i18next";
+import { ActivityIndicator, View } from "react-native";
+import { Heading } from "../components/heading";
 
 export default function Index() {
-  const { setLang } = useLangStore();
-
+  const { t } = useTranslation();
   return (
-    <View style={styles.container}>
-      <HStack space="sm">
-        <Button onPress={() => setLang("en")}>
-          <ButtonText>English</ButtonText>
-        </Button>
-        <Button onPress={() => setLang("ar")}>
-          <ButtonText>العربية</ButtonText>
-        </Button>
-        <Button onPress={() => setLang("de")}>
-          <ButtonText>Deutsch</ButtonText>
-        </Button>
-      </HStack>
-
-      <StorageDebug />
+    <View className="flex-1 flex flex-col items-center justify-center gap-20 bg-white">
+      <Heading className="w-1/2 text-center">{t("common.izr")}</Heading>
+      <ActivityIndicator size="small" color="#6366f1" />
+      <Redirect href="/home" />;
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    gap: 12,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

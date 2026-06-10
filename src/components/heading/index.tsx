@@ -1,8 +1,9 @@
-import React, { forwardRef, memo } from "react";
+import { SizeKey, useRTL } from "@/src/hooks/use-rtl";
 import { H1, H2, H3, H4, H5, H6 } from "@expo/html-elements";
-import { headingStyle } from "./styles";
-import type { VariantProps } from "@gluestack-ui/utils/nativewind-utils";
+import { cn, type VariantProps } from "@gluestack-ui/utils/nativewind-utils";
 import { cssInterop } from "nativewind";
+import React, { forwardRef, memo } from "react";
+import { headingStyle } from "./styles";
 
 type IHeadingProps = VariantProps<typeof headingStyle> &
   React.ComponentPropsWithoutRef<typeof H1> & {
@@ -188,7 +189,10 @@ const Heading = memo(
       sub,
       italic,
       highlight,
+      style,
     } = props;
+
+    const { getTextStyle, isRTL } = useRTL();
 
     if (AsComp) {
       return (
@@ -202,15 +206,22 @@ const Heading = memo(
             sub: sub as boolean,
             italic: italic as boolean,
             highlight: highlight as boolean,
-            class: className,
+            class: cn(isRTL ? "text-right" : "text-left", className),
           })}
+          style={[getTextStyle(size as SizeKey), style]}
           {...props}
         />
       );
     }
 
     return (
-      <MappedHeading className={className} size={size} ref={ref} {...props} />
+      <MappedHeading
+        className={cn(isRTL ? "text-right" : "text-left", className)}
+        style={[getTextStyle(size as SizeKey), style]}
+        size={size}
+        ref={ref}
+        {...props}
+      />
     );
   }),
 );

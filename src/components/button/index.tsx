@@ -1,4 +1,5 @@
 "use client";
+import { useRTL } from "@/src/hooks/use-rtl";
 import { createButton } from "@gluestack-ui/core/button/creator";
 import { PrimitiveIcon, UIIcon } from "@gluestack-ui/core/icon/creator";
 import {
@@ -37,7 +38,7 @@ cssInterop(PrimitiveIcon, {
 });
 
 const buttonStyle = tva({
-  base: "group/button rounded bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2",
+  base: "group/button rounded-2xl bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2",
   variants: {
     action: {
       primary:
@@ -309,17 +310,19 @@ type IButtonTextProps = React.ComponentPropsWithoutRef<typeof UIButton.Text> &
 const ButtonText = React.forwardRef<
   React.ElementRef<typeof UIButton.Text>,
   IButtonTextProps
->(({ className, variant, size, action, ...props }, ref) => {
+>(({ className, variant, size, action, style, ...props }, ref) => {
   const {
     variant: parentVariant,
     size: parentSize,
     action: parentAction,
   } = useStyleContext(SCOPE);
 
+  const { getTextStyle } = useRTL();
   return (
     <UIButton.Text
       ref={ref}
       {...props}
+      style={[getTextStyle(size), style]}
       className={buttonTextStyle({
         parentVariants: {
           variant: parentVariant,
