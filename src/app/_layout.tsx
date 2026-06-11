@@ -15,6 +15,20 @@ export default function RootLayout() {
       <I18nSync />
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="(modals)/font-size"
+          options={{
+            presentation: "modal", // iOS sheet, Android slide-up
+            headerShown: false, // or true with a close button
+          }}
+        />
+        <Stack.Screen
+          name="(modals)/language"
+          options={{
+            presentation: "modal", // iOS sheet, Android slide-up
+            headerShown: false, // or true with a close button
+          }}
+        />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </GluestackUIProvider>
