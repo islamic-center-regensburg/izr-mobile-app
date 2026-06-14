@@ -35,8 +35,10 @@ export function StorageDebug() {
       <VStack space="xs">
         {entries.map(([key, value]) => (
           <VStack key={key} space="xs">
-            <Text className="text-typography-500 text-xs font-bold">{key}</Text>
-            <Text className="text-xs">{value}</Text>
+            <Text className="text-typography-500 text-xs font-bold text-left">
+              {key}
+            </Text>
+            <Text className="text-xs text-left">{value}</Text>
           </VStack>
         ))}
       </VStack>

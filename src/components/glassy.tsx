@@ -6,13 +6,19 @@ type GlassyProps = BlurViewProps & {
   className?: string;
 };
 
-const Glassy = ({ className, style, intensity = 15, tint = "light", ...props }: GlassyProps) => {
+const Glassy = ({
+  className,
+  style,
+  intensity = 15,
+  tint = "light",
+  ...props
+}: GlassyProps) => {
   return (
     <BlurView
       intensity={intensity}
       tint={tint}
       style={[styles.glassy, style]}
-      className={cn("border-3 border-neutral-400",className)}
+      className={cn("border-3 border-neutral-400", className)}
       {...props}
     />
   );
