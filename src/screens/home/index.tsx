@@ -1,3 +1,4 @@
+import Glassy from "@/src/components/glassy";
 import { Heading } from "@/src/components/heading";
 import { Text } from "@/src/components/text";
 import { VStack } from "@/src/components/vstack";
@@ -10,6 +11,7 @@ const HomeScreen = () => {
   return (
     <AppScreen>
       <View className="flex-1 p-5">
+        <Glassy>
         <VStack className="mb-10">
           <Text className="font-sans-regular text-center">
             {t("common.izr")}
@@ -18,7 +20,7 @@ const HomeScreen = () => {
             {t("common.izr")}
           </Heading>
         </VStack>
-        <VStack></VStack>
+          </Glassy>
       </View>
     </AppScreen>
   );

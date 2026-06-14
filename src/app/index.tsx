@@ -8,8 +8,8 @@ export default function Index() {
   return (
     <View className="flex-1 flex flex-col items-center justify-center gap-20 bg-white">
       <Heading className="w-1/2 text-center">{t("common.izr")}</Heading>
-      <ActivityIndicator size="small" color="#6366f1" />
-      <Redirect href="/home" />;
+      <ActivityIndicator size="small" color="#6366f1"/>
+      <Redirect href="/home" />
     </View>
   );
 }
