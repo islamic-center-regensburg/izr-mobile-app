@@ -2,7 +2,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { PrayerTimes } from "../api/prayer_times/types";
+import { PrayerTimes } from "../api";
 
 interface TodayPrayerTimesState {
   prayerTimes: PrayerTimes | null;

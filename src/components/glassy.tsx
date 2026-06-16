@@ -17,8 +17,8 @@ const Glassy = ({
     <BlurView
       intensity={intensity}
       tint={tint}
-      style={[styles.glassy, style]}
       className={cn("border-3 border-neutral-400", className)}
+      style={[styles.glassy, style]}
       {...props}
     />
   );
