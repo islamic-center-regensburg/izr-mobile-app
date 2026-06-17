@@ -4,7 +4,7 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { WithHydration } from "./common";
 
-export type FontSizeScale = "sm" | "md" | "lg";
+export type FontSizeScale = "xs" | "sm" | "md";
 
 interface FontSizeStore extends WithHydration {
   scale: FontSizeScale;
@@ -12,9 +12,9 @@ interface FontSizeStore extends WithHydration {
 }
 
 export const FONT_SCALE = {
+  xs: 0.8,
   sm: 1,
   md: 1.2,
-  lg: 1.4,
 } as const;
 
 export const fontSizeStore = create<FontSizeStore>()(

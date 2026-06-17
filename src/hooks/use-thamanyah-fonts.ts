@@ -7,6 +7,7 @@ export function useThmanyahFonts() {
     "ThmanyahSans-Light": require("../../assets/fonts/Thmanyah/thmanyahsans/otf/ss01/thmanyahsans-LightSS01.otf"),
     "ThmanyahSans-Medium": require("../../assets/fonts/Thmanyah/thmanyahsans/otf/ss01/thmanyahsans-MediumSS01.otf"),
     "ThmanyahSans-Regular": require("../../assets/fonts/Thmanyah/thmanyahsans/otf/ss01/thmanyahsans-RegularSS01.otf"),
+    "ThmanyahSans-Regular-No-SS01": require("../../assets/fonts/Thmanyah/thmanyahsans/otf/thmanyahsans-Regular.otf"),
     "ThmanyahSerifDisplay-Black": require("../../assets/fonts/Thmanyah/thmanyahserifdisplay/otf/ss01/thmanyahserifdisplay-BlackSS01.otf"),
     "ThmanyahSerifDisplay-Bold": require("../../assets/fonts/Thmanyah/thmanyahserifdisplay/otf/ss01/thmanyahserifdisplay-BoldSS01.otf"),
     "ThmanyahSerifDisplay-Light": require("../../assets/fonts/Thmanyah/thmanyahserifdisplay/otf/ss01/thmanyahserifdisplay-LightSS01.otf"),

@@ -4,11 +4,11 @@ import { Heading } from "@/src/components/heading";
 import { HStack } from "@/src/components/hstack";
 import { Text } from "@/src/components/text";
 import { useTranslation } from "react-i18next";
-import { StyleSheet } from "react-native";
 
 interface PrayerTimeCardProps {
   prayerNameKey: PrayerNameKey;
   prayerTime: string;
+  iqamaTime: string;
 }
 
 const PrayerTimeCard = (props: PrayerTimeCardProps) => {
@@ -24,12 +24,10 @@ const PrayerTimeCard = (props: PrayerTimeCardProps) => {
       </HStack>
       <HStack className="justify-between">
         <Text>{t("home-screen.iqama")}</Text>
-        <Text>{props.prayerTime}</Text>
+        <Text>{props.iqamaTime}</Text>
       </HStack>
     </Glassy>
   );
 };
 
 export default PrayerTimeCard;
-
-const styles = StyleSheet.create({});

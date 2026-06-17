@@ -8,7 +8,7 @@ export default {
       asr: "Asr",
       maghrib: "Maghrib",
       isha: "Isha",
-      jumah: "Jumaa",
+      jumah: "Jumah",
     },
     "next-prayer": "Next Prayer",
   },
@@ -28,10 +28,14 @@ export default {
   },
   "home-screen": {
     "error-loading-prayer-times": "Got an Error While loading Prayer Times",
+    khutbah: "Khutbah",
     iqama: "Iqama",
     adhan: "Adhan",
     "remaining-time": "Remaining Time",
     "hijri-date": "Hijri Date",
     "gregorian-date": "Gregorian Date",
+    hours: "h",
+    min: "min",
+    sec: "sec",
   },
 } as const;

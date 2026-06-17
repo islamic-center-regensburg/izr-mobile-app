@@ -17,10 +17,13 @@ const Glassy = ({
     <BlurView
       intensity={intensity}
       tint={tint}
-      className={cn("border-3 border-neutral-400", className)}
       style={[styles.glassy, style]}
       {...props}
-    />
+    >
+      <BlurView intensity={0} className={cn("flex-1", className)}>
+        {props.children}
+      </BlurView>
+    </BlurView>
   );
 };
 
