@@ -2,13 +2,14 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { WithHydration } from "./common";
 
 export type FontSizeScale = "sm" | "md" | "lg";
 
-type FontSizeStore = {
+interface FontSizeStore extends WithHydration {
   scale: FontSizeScale;
   setScale: (scale: FontSizeScale) => void;
-};
+}
 
 export const FONT_SCALE = {
   sm: 1,
@@ -20,11 +21,15 @@ export const fontSizeStore = create<FontSizeStore>()(
   persist(
     (set) => ({
       scale: "sm",
+      hydrated: false,
       setScale: (scale) => set({ scale }),
     }),
     {
       name: "st-font-size",
       storage: createJSONStorage(() => AsyncStorage),
+      onRehydrateStorage: () => (state) => {
+        if (state) state.hydrated = true;
+      },
     },
   ),
 );

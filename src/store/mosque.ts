@@ -2,10 +2,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { WithHydration } from "./common";
 
 const DEFAULT_MOSQUE_NAME: string = "Islamisches Zentrum Regensburg";
 
-interface MosqueState {
+interface MosqueState extends WithHydration {
   mosque: string;
   hydrated: boolean;
   setMosque: (name: string) => void;

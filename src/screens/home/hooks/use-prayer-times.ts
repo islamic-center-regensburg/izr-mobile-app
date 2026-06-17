@@ -3,7 +3,7 @@ import { getMosquesQueryOptions } from "@/src/api/mosque/queries";
 import { getPrayerTimesForMosqueQueryOptions } from "@/src/api/prayer_times/queries";
 import { useMosqueStore } from "@/src/store/mosque";
 import {
-  isCacheValid,
+  isTodayPrayerTimesCacheValid,
   useTodayPrayerTimesStore,
 } from "@/src/store/today-prayer-times";
 import { useQuery } from "@tanstack/react-query";
@@ -31,7 +31,7 @@ export function usePrayerTimes() {
       mosque_id: izrMosque?.id ?? "",
       query: { year, month, day, source: "stored" },
     }),
-    enabled: !!izrMosque?.id && hydrated && !isCacheValid(),
+    enabled: !!izrMosque?.id && hydrated && !isTodayPrayerTimesCacheValid(),
   });
 
   // ── Step 3: sync fetched data → zustand store ─────────────────────
@@ -43,7 +43,7 @@ export function usePrayerTimes() {
   }, [fetchedPrayerTimes, setPrayerTimes]);
 
   // ── Step 4: resolve final prayer times (cache or fresh) ───────────
-  const resolvedPrayerTimes = isCacheValid()
+  const resolvedPrayerTimes = isTodayPrayerTimesCacheValid()
     ? prayerTimes
     : (fetchedPrayerTimes?.[0] ?? null);
 

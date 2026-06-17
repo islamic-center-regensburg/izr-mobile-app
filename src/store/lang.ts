@@ -2,14 +2,14 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { WithHydration } from "./common";
 
 export type SupportedLanguage = "en" | "ar" | "de";
 
 const DEFAULT_LANG: SupportedLanguage = "de";
 
-interface LangState {
+interface LangState extends WithHydration {
   lang: SupportedLanguage;
-  hydrated: boolean;
   setLang: (lang: SupportedLanguage) => void;
   resetLang: () => void;
 }

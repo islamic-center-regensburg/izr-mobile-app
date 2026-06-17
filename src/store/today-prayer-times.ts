@@ -3,19 +3,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { PrayerTimes } from "../api";
+import { WithCacheValidation, getTodayString, isCacheValid } from "./common";
 
-interface TodayPrayerTimesState {
+interface TodayPrayerTimesState extends WithCacheValidation {
   prayerTimes: PrayerTimes | null;
-  cachedDate: string | null;
-  hydrated: boolean;
   setPrayerTimes: (prayerTimes: PrayerTimes) => void;
   clearPrayerTimes: () => void;
 }
-
-const getTodayString = () => {
-  const today = new Date();
-  return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-};
 
 const todayPrayerTimesStore = create<TodayPrayerTimesState>()(
   persist(
@@ -39,7 +33,5 @@ const todayPrayerTimesStore = create<TodayPrayerTimesState>()(
 
 export const useTodayPrayerTimesStore = () => todayPrayerTimesStore((s) => s);
 
-export const isCacheValid = () => {
-  const { cachedDate } = todayPrayerTimesStore.getState();
-  return cachedDate === getTodayString();
-};
+export const isTodayPrayerTimesCacheValid = () =>
+  isCacheValid(todayPrayerTimesStore);
