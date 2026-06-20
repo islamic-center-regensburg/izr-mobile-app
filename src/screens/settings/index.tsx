@@ -2,7 +2,9 @@
 
 import { NestedKeyOf, TranslationKeys } from "@/i18n-env";
 import { Divider } from "@/src/components/divider";
+import Glassy from "@/src/components/glassy";
 import { HStack } from "@/src/components/hstack";
+import { StorageDebug } from "@/src/components/storage-debug";
 import { Text } from "@/src/components/text";
 import { useRTL } from "@/src/hooks/use-rtl";
 import { RelativePathString, router } from "expo-router";
@@ -36,12 +38,12 @@ export function SettingsScreen() {
       <View className="flex-1 px-4 py-4">
         <View className="rounded-xl overflow-hidden">
           {settings.map((setting, index) => (
-            <View key={setting.route}>
+            <Glassy key={setting.route} style={{ marginBottom: 5 }}>
               <Pressable
                 onPress={() => router.navigate(setting.route)}
                 className="active:opacity-70"
               >
-                <HStack className="items-center justify-between px-4 py-4 bg-white dark:bg-neutral-900">
+                <HStack className="items-center justify-between px-4 py-4">
                   <Text>{t(setting.label)}</Text>
                   {isRTL ? (
                     <ChevronLeft size={18} className="text-neutral-400" />
@@ -50,10 +52,10 @@ export function SettingsScreen() {
                   )}
                 </HStack>
               </Pressable>
-
-              {index < settings.length - 1 && <Divider />}
-            </View>
+            </Glassy>
           ))}
+          <Divider className="my-4" />
+          <StorageDebug />
         </View>
       </View>
     </AppScreen>

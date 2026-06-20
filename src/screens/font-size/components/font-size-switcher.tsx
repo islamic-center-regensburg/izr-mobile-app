@@ -11,9 +11,9 @@ const FONT_SIZES: {
   value: FontSizeScale;
   textClass: string;
 }[] = [
+  { label: "Aa", labelAr: "خط", value: "xs", textClass: "text-xs" },
   { label: "Aa", labelAr: "خط", value: "sm", textClass: "text-sm" },
   { label: "Aa", labelAr: "خط", value: "md", textClass: "text-base" },
-  { label: "Aa", labelAr: "خط", value: "lg", textClass: "text-xl" },
 ] as const;
 
 export const FontSizeSwitcher = () => {

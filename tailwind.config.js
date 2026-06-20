@@ -188,6 +188,7 @@ module.exports = {
         "sans-bold": ["ThmanyahSans-Bold"],
         "sans-medium": ["ThmanyahSans-Medium"],
         "sans-regular": ["ThmanyahSans-Regular"],
+        "sans-regular-no-ss01": ["ThmanyahSans-Regular-No-SS01"],
         "sans-light": ["ThmanyahSans-Light"],
         jakarta: ["var(--font-plus-jakarta-sans)"],
         roboto: ["var(--font-roboto)"],
