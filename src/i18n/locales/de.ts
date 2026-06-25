@@ -32,6 +32,8 @@ export default {
     khutbah: "Predigt",
     iqama: "Iqama",
     adhan: "Adhan",
+    today: "Heute",
+    tomorrow: "Morgen",
     "remaining-time": "Verbleibende Zeit",
     "hijri-date": "Hijri-Datum",
     "gregorian-date": "Greg. Datum",

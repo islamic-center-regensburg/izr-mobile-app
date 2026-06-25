@@ -3,12 +3,7 @@ export const buildQueryKey = (
   queryObj?: Record<string, unknown>,
 ) => {
   if (!queryObj) return [baseKey];
-
-  const queryEntries = Object.entries(queryObj)
-    .filter(([, value]) => value !== null && value !== undefined)
-    .map(([key, value]) => `${key}: ${value}`);
-
-  return [baseKey, ...queryEntries];
+  return [baseKey, queryObj];
 };
 
 export const buildQueryKeyWithPath = (
@@ -16,11 +11,7 @@ export const buildQueryKeyWithPath = (
   { path, value }: { path: string; value: string },
   queryObj?: Record<string, unknown>,
 ) => {
-  if (!queryObj) return [baseKey, `/{${path}}: ${value}`];
-
-  const queryEntries = Object.entries(queryObj)
-    .filter(([, value]) => value !== null && value !== undefined)
-    .map(([key, value]) => `${key}: ${value}`);
-
-  return [baseKey, `/{${path}}: ${value}`, ...queryEntries];
+  const pathPart = `/{${path}}: ${value}`;
+  if (!queryObj) return [baseKey, pathPart];
+  return [baseKey, pathPart, queryObj];
 };

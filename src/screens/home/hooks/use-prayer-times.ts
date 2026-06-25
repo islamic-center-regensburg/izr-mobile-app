@@ -3,20 +3,27 @@ import { getMosquesQueryOptions } from "@/src/api/mosque/queries";
 import { getPrayerTimesForMosqueQueryOptions } from "@/src/api/prayer_times/queries";
 import { useMosqueStore } from "@/src/store/mosque";
 import {
-  isTodayPrayerTimesCacheValid,
-  useTodayPrayerTimesStore,
-} from "@/src/store/today-prayer-times";
+  isPrayerTimesCacheValid,
+  PrayerTimesDay,
+  usePrayerTimesStore,
+} from "@/src/store/prayer-times";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
-export function usePrayerTimes() {
+export function usePrayerTimes(prayerTimesday: PrayerTimesDay) {
   const { mosque: izrMosqueName } = useMosqueStore();
-  const { prayerTimes, setPrayerTimes, hydrated } = useTodayPrayerTimesStore();
+  const { today, tomorrow, setPrayerTimes, hydrated } = usePrayerTimesStore();
+  const prayerTimes =
+    prayerTimesday === "today" ? today.prayerTimes : tomorrow.prayerTimes;
 
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
-  const day = today.getDate();
+  const date = new Date();
+  if (prayerTimesday === "tomorrow") {
+    date.setDate(date.getDate() + 1);
+  }
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
 
   // ── Step 1: fetch mosque ──────────────────────────────────────────
   const { data: mosques, ...mosquesQuery } = useQuery(
@@ -31,7 +38,8 @@ export function usePrayerTimes() {
       mosque_id: izrMosque?.id ?? "",
       query: { year, month, day, source: "stored" },
     }),
-    enabled: !!izrMosque?.id && hydrated && !isTodayPrayerTimesCacheValid(),
+    enabled:
+      !!izrMosque?.id && hydrated && !isPrayerTimesCacheValid(prayerTimesday),
   });
 
   // ── Step 3: sync fetched data → zustand store ─────────────────────
@@ -39,11 +47,11 @@ export function usePrayerTimes() {
     if (!fetchedPrayerTimes?.length) return;
 
     const todayPrayerTimes = fetchedPrayerTimes[0];
-    setPrayerTimes(todayPrayerTimes);
-  }, [fetchedPrayerTimes, setPrayerTimes]);
+    setPrayerTimes(todayPrayerTimes, prayerTimesday);
+  }, [fetchedPrayerTimes, setPrayerTimes, prayerTimesday]);
 
   // ── Step 4: resolve final prayer times (cache or fresh) ───────────
-  const resolvedPrayerTimes = isTodayPrayerTimesCacheValid()
+  const resolvedPrayerTimes = isPrayerTimesCacheValid(prayerTimesday)
     ? prayerTimes
     : (fetchedPrayerTimes?.[0] ?? null);
 

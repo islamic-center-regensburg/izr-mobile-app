@@ -1,6 +1,7 @@
 import Glassy from "@/src/components/glassy";
 import { Grid, GridItem } from "@/src/components/grid";
 import { Text } from "@/src/components/text";
+import { PrayerTimesDay } from "@/src/store/prayer-times";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, View } from "react-native";
 import { useIqamaTimes } from "../../hooks/use-iqama-times";
@@ -9,8 +10,14 @@ import { JumahTimeCard } from "../jumah-time-card";
 import { prayerNameKeys } from "./constants";
 import PrayerTimeCard from "./prayer-time-card";
 
-const PrayerTimes = () => {
-  const { prayerTimes, ...prayerTimesQuery } = usePrayerTimes();
+export interface PrayerTimesProps {
+  prayerTimesDay: PrayerTimesDay;
+}
+
+const PrayerTimes = (props: PrayerTimesProps) => {
+  const { prayerTimes, ...prayerTimesQuery } = usePrayerTimes(
+    props.prayerTimesDay,
+  );
   const { iqamaTimes, ...iqamaTimesQuery } = useIqamaTimes();
 
   const { t } = useTranslation();

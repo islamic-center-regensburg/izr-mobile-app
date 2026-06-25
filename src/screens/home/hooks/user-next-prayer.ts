@@ -1,109 +1,46 @@
-import { PrayerNameKey } from "@/src/api";
-import { useEffect, useRef, useState } from "react";
+// hooks/use-next-prayer.ts
+import { useCountdown } from "@/src/hooks/use-countdown";
+import { useEffect, useState } from "react";
+import { computeNextPrayer, NextPrayerInfo } from "./compute-next-prayer";
 import { usePrayerTimes } from "./use-prayer-times";
 
-interface NextPrayer {
-  name: PrayerNameKey;
-  time: string;
-  countdown: {
-    hours: string;
-    minutes: string;
-    seconds: string;
-  };
-  totalSeconds: number;
-}
-
 interface UseNextPrayerResult {
-  nextPrayer: NextPrayer | null;
+  nextPrayer:
+    | (NextPrayerInfo & {
+        countdown: ReturnType<typeof useCountdown>;
+      })
+    | null;
   isLoading: boolean;
+  showTomorrowPrayers: boolean;
 }
-
-const pad = (n: number) => String(n).padStart(2, "0");
-
-const parseTimeToDate = (timeStr: string, baseDate: Date): Date => {
-  const [hours, minutes] = timeStr.split(":").map(Number);
-  const date = new Date(baseDate);
-  date.setHours(hours, minutes, 0, 0);
-  return date;
-};
-
-const PRAYER_NAMES_ORDER: Exclude<PrayerNameKey, "jumah">[] = [
-  "fajr",
-  "dhuhr",
-  "asr",
-  "maghrib",
-  "isha",
-];
 
 export const useNextPrayer = (): UseNextPrayerResult => {
-  const { prayerTimes, isLoading: isPrayerTimesLoading } = usePrayerTimes();
-  const [nextPrayer, setNextPrayer] = useState<NextPrayer | null>(null);
+  const { prayerTimes: today, isLoading: isTodayLoading } =
+    usePrayerTimes("today");
+  const { prayerTimes: tomorrow, isLoading: isTomorrowLoading } =
+    usePrayerTimes("tomorrow");
 
-  const prayerTimesRef = useRef(prayerTimes);
+  const [nextPrayerInfo, setNextPrayerInfo] = useState<NextPrayerInfo | null>(
+    null,
+  );
+
+  // Recompute when prayer data changes OR when current target expires
   useEffect(() => {
-    prayerTimesRef.current = prayerTimes;
-  }, [prayerTimes]);
+    setNextPrayerInfo(computeNextPrayer(today, tomorrow));
+  }, [today, tomorrow]);
 
+  const countdown = useCountdown(nextPrayerInfo?.targetDate ?? null);
+
+  // When countdown hits 0, recompute next prayer
   useEffect(() => {
-    if (!prayerTimes) return;
-
-    const computeNextPrayer = (): NextPrayer | null => {
-      const currentPrayerTimes = prayerTimesRef.current;
-      if (!currentPrayerTimes) return null;
-
-      const now = new Date();
-
-      for (const name of PRAYER_NAMES_ORDER) {
-        const prayerDate = parseTimeToDate(currentPrayerTimes[name], now);
-        if (prayerDate > now) {
-          const diffSeconds = Math.floor(
-            (prayerDate.getTime() - now.getTime()) / 1000,
-          );
-          return {
-            name,
-            time: currentPrayerTimes[name],
-            countdown: {
-              hours: pad(Math.floor(diffSeconds / 3600)),
-              minutes: pad(Math.floor((diffSeconds % 3600) / 60)),
-              seconds: pad(diffSeconds % 60),
-            },
-            totalSeconds: diffSeconds,
-          };
-        }
-      }
-
-      // All prayers passed → next is Fajr of tomorrow
-      const tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      const fajrTomorrow = parseTimeToDate(
-        currentPrayerTimes["fajr"],
-        tomorrow,
-      );
-      const diffSeconds = Math.floor(
-        (fajrTomorrow.getTime() - now.getTime()) / 1000,
-      );
-
-      return {
-        name: "fajr",
-        time: currentPrayerTimes["fajr"],
-        countdown: {
-          hours: pad(Math.floor(diffSeconds / 3600)),
-          minutes: pad(Math.floor((diffSeconds % 3600) / 60)),
-          seconds: pad(diffSeconds % 60),
-        },
-        totalSeconds: diffSeconds,
-      };
-    };
-
-    const interval = setInterval(() => {
-      setNextPrayer(computeNextPrayer());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [prayerTimes]);
+    if (countdown.isExpired && nextPrayerInfo) {
+      setNextPrayerInfo(computeNextPrayer(today, tomorrow));
+    }
+  }, [countdown.isExpired, today, tomorrow]);
 
   return {
-    nextPrayer,
-    isLoading: isPrayerTimesLoading || nextPrayer === null,
+    nextPrayer: nextPrayerInfo ? { ...nextPrayerInfo, countdown } : null,
+    isLoading: isTodayLoading || isTomorrowLoading || !nextPrayerInfo,
+    showTomorrowPrayers: nextPrayerInfo?.isTomorrow ?? false,
   };
 };
