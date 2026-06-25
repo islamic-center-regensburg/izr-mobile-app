@@ -2,12 +2,15 @@ import Glassy from "@/src/components/glassy";
 import { HStack } from "@/src/components/hstack";
 import { Text } from "@/src/components/text";
 import { VStack } from "@/src/components/vstack";
+import { PrayerTimesDay } from "@/src/store/prayer-times";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator } from "react-native";
 import { usePrayerTimes } from "../hooks/use-prayer-times";
-
-const TodayDate = () => {
-  const { prayerTimes, isLoading } = usePrayerTimes();
+interface CurrentDateProps {
+  prayerTimesDay: PrayerTimesDay;
+}
+const CurrentDate = (props: CurrentDateProps) => {
+  const { prayerTimes, isLoading } = usePrayerTimes(props.prayerTimesDay);
   const { t } = useTranslation();
   if (isLoading) {
     return (
@@ -18,7 +21,8 @@ const TodayDate = () => {
   }
   return (
     <Glassy style={{ padding: 10 }}>
-      <VStack className="w-full items-center">
+      <VStack className="w-full items-center bg-transparent">
+        <Text>{t(`home-screen.${props.prayerTimesDay}`)}</Text>
         <HStack className="w-full justify-between">
           <Text className="text-black">{t("home-screen.hijri-date")}</Text>
           <Text className="text-black">{prayerTimes?.hijri_date}</Text>
@@ -32,4 +36,4 @@ const TodayDate = () => {
   );
 };
 
-export default TodayDate;
+export default CurrentDate;

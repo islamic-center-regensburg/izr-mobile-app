@@ -32,6 +32,8 @@ export default {
     khutbah: "خطبة",
     iqama: "الإقامة",
     adhan: "الأذان",
+    today: "الـيوم",
+    tomorrow: "غــداً",
     "remaining-time": "الوقت المتبقي",
     "hijri-date": "التاريخ الهجري",
     "gregorian-date": "التاريخ الميلادي",
