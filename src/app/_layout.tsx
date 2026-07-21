@@ -3,10 +3,13 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { GluestackUIProvider } from "../components/gluestack-ui-provider";
 import { I18nSync } from "../components/i18n-sync";
 import TanstackSuery from "../components/tanstack-query";
+import { useNotificationScheduler } from "../hooks/use-notification-scheduler";
 import { useThmanyahFonts } from "../hooks/use-thamanyah-fonts";
 
 export default function RootLayout() {
   const { loaded } = useThmanyahFonts();
+
+  useNotificationScheduler();
 
   if (!loaded) {
     return null;

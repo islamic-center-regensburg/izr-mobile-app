@@ -30,15 +30,26 @@ export function StorageDebug() {
     await load();
   }
 
+  function formatValue(value: string | null): string {
+    if (value == null) return "";
+    try {
+      return JSON.stringify(JSON.parse(value), null, 2);
+    } catch {
+      return value; // not JSON (e.g. plain "en", "sm") — render as-is
+    }
+  }
+
   return (
     <View className="p-3 bg-background-100 rounded-lg border border-outline-200">
       <VStack space="xs">
         {entries.map(([key, value]) => (
           <VStack key={key} space="xs">
-            <Text className="text-typography-500 text-xs font-bold text-left">
+            <Text className="text-typography-900 text-xs font-bold text-left">
               {key}
             </Text>
-            <Text className="text-xs text-left">{value}</Text>
+            <Text className="text-xs text-left text-typography-600">
+              {formatValue(value)}
+            </Text>
           </VStack>
         ))}
       </VStack>
