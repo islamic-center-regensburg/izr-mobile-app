@@ -16,6 +16,7 @@ export default {
     title: "Settings",
     fontSize: "Font Size",
     language: "Language",
+    notifications: "Notifications",
   },
   tabbar: {
     home: "Home",
@@ -25,6 +26,13 @@ export default {
     "test-heading": "Welcome to IZ Regensburg",
     "test-text":
       "The mosque is the heart of the Muslim community. It is a place where believers gather for prayer, seek knowledge, and support one another. At the Islamic Center of Regensburg, we strive to serve our community with sincerity, compassion, and dedication to the values of Islam — peace, justice, and mercy.",
+  },
+  "notifications-screen": {
+    title: "Notifications Settings",
+  },
+  notifications: {
+    adhanTitle: "Adhan Time for {{prayer}}",
+    adhanBody: "It's time for {{prayer}} prayer.",
   },
   "home-screen": {
     "error-loading-prayer-times": "Got an Error While loading Prayer Times",

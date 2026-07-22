@@ -1,4 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import JSONTree from "react-native-json-tree";
+
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 import { useFontSizeStore } from "../store/font-size";
@@ -30,10 +32,12 @@ export function StorageDebug() {
     await load();
   }
 
-  function formatValue(value: string | null): string {
+  function formatValue(value: string | null, asJson: boolean = false): string {
     if (value == null) return "";
     try {
-      return JSON.stringify(JSON.parse(value), null, 2);
+      return !asJson
+        ? JSON.stringify(JSON.parse(value), null, 2)
+        : JSON.parse(value);
     } catch {
       return value; // not JSON (e.g. plain "en", "sm") — render as-is
     }
@@ -47,9 +51,7 @@ export function StorageDebug() {
             <Text className="text-typography-900 text-xs font-bold text-left">
               {key}
             </Text>
-            <Text className="text-xs text-left text-typography-600">
-              {formatValue(value)}
-            </Text>
+            <JSONTree data={formatValue(value, true)} />
           </VStack>
         ))}
       </VStack>

@@ -5,6 +5,9 @@ import { I18nSync } from "../components/i18n-sync";
 import TanstackSuery from "../components/tanstack-query";
 import { useNotificationScheduler } from "../hooks/use-notification-scheduler";
 import { useThmanyahFonts } from "../hooks/use-thamanyah-fonts";
+import { setupNotifications } from "../notifications";
+
+setupNotifications();
 
 export default function RootLayout() {
   const { loaded } = useThmanyahFonts();
@@ -31,6 +34,13 @@ export default function RootLayout() {
             />
             <Stack.Screen
               name="(modals)/language"
+              options={{
+                presentation: "modal", // iOS sheet, Android slide-up
+                headerShown: false, // or true with a close button
+              }}
+            />
+            <Stack.Screen
+              name="(modals)/notifications"
               options={{
                 presentation: "modal", // iOS sheet, Android slide-up
                 headerShown: false, // or true with a close button
