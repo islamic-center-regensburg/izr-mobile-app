@@ -14,7 +14,7 @@ interface LangState extends WithHydration {
   resetLang: () => void;
 }
 
-const langStore = create<LangState>()(
+export const langStore = create<LangState>()(
   persist(
     (set) => ({
       lang: DEFAULT_LANG,

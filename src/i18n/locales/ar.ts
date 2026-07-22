@@ -17,6 +17,7 @@ export default {
     title: "الإعدادات",
     fontSize: "حجم الخط",
     language: "اللغة",
+    notifications: "الإشعارات",
   },
   tabbar: {
     home: "الرئيسية",
@@ -26,6 +27,13 @@ export default {
     "test-heading": "مرحباً بكم في المركز الإسلامي",
     "test-text":
       "المسجد هو قلب المجتمع المسلم، وهو مكان يجتمع فيه المسلمون للصلاة وطلب العلم والتعاون فيما بينهم. يسعى المركز الإسلامي بريغنسبورغ إلى خدمة مجتمعه بإخلاص وتفانٍ، مستلهماً قيم الإسلام من سلام وعدل ورحمة.",
+  },
+  "notifications-screen": {
+    title: "إعدادات الإشعارات",
+  },
+  notifications: {
+    adhanTitle: "موعد أذان {{prayer}}",
+    adhanBody: "حان الآن وقت صلاة {{prayer}}.",
   },
   "home-screen": {
     "error-loading-prayer-times": "حدث خطأ أثناء تحميل أوقات الصلاة",

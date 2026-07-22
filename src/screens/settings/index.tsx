@@ -31,6 +31,10 @@ export function SettingsScreen() {
       label: "settings.language",
       route: "/(modals)/language" as RelativePathString,
     },
+    {
+      label: "settings.notifications",
+      route: "/(modals)/notifications" as RelativePathString,
+    },
   ];
 
   return (
