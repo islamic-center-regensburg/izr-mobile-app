@@ -1,6 +1,7 @@
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
 import { BlurView, BlurViewProps } from "expo-blur";
-import { StyleSheet } from "react-native";
+import { useRef } from "react";
+import { StyleSheet, View } from "react-native";
 
 type GlassyProps = BlurViewProps & {
   className?: string;
@@ -9,18 +10,26 @@ type GlassyProps = BlurViewProps & {
 const Glassy = ({
   className,
   style,
-  intensity = 15,
+  intensity = 100,
   tint = "light",
   ...props
 }: GlassyProps) => {
+  const targetRef = useRef<View | null>(null);
   return (
     <BlurView
       intensity={intensity}
       tint={tint}
+      blurTarget={targetRef}
+      blurMethod="dimezisBlurViewSdk31Plus"
       style={[styles.glassy, style]}
       {...props}
     >
-      <BlurView intensity={0} className={cn("flex-1", className)}>
+      <BlurView
+        intensity={0}
+        blurTarget={targetRef}
+        blurMethod="dimezisBlurViewSdk31Plus"
+        className={cn("flex-1", className)}
+      >
         {props.children}
       </BlurView>
     </BlurView>

@@ -1,6 +1,7 @@
 export default {
   common: {
     izr: "Islamic Center of Regensburg",
+    copyright: "© {{year}} Islamic Center of Regensburg. All rights reserved.",
     welcome: "Welcome",
     "prayer-names": {
       fajr: "Fajr",

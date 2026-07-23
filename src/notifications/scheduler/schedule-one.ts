@@ -42,7 +42,7 @@ export async function scheduleOne(
           lng: lang,
           prayer: prayerLabel,
         }),
-        sound: "abdul_basit.wav",
+        // sound: "abdul_basit.wav",
       },
       trigger: {
         type: Notifications.SchedulableTriggerInputTypes.DATE,

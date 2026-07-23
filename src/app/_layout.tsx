@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import { StatusBar } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { GluestackUIProvider } from "../components/gluestack-ui-provider";
 import { I18nSync } from "../components/i18n-sync";
@@ -20,6 +21,7 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
+      <StatusBar barStyle={"dark-content"} />
       <TanstackSuery>
         <GluestackUIProvider>
           <I18nSync />
@@ -46,7 +48,7 @@ export default function RootLayout() {
                 headerShown: false, // or true with a close button
               }}
             />
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
           </Stack>
         </GluestackUIProvider>
       </TanstackSuery>

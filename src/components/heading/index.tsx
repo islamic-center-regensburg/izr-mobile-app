@@ -2,7 +2,8 @@ import { SizeKey, useRTL } from "@/src/hooks/use-rtl";
 import { H1, H2, H3, H4, H5, H6 } from "@expo/html-elements";
 import { cn, type VariantProps } from "@gluestack-ui/utils/nativewind-utils";
 import { cssInterop } from "nativewind";
-import React, { forwardRef, memo } from "react";
+import React, { forwardRef } from "react";
+import { Text as RNText } from "react-native";
 import { headingStyle } from "./styles";
 
 type IHeadingProps = VariantProps<typeof headingStyle> &
@@ -17,215 +18,28 @@ cssInterop(H4, { className: "style" });
 cssInterop(H5, { className: "style" });
 cssInterop(H6, { className: "style" });
 
-const MappedHeading = memo(
-  forwardRef<React.ComponentRef<typeof H1>, IHeadingProps>(
-    function MappedHeading(
-      {
-        size,
-        className,
-        isTruncated,
-        bold,
-        underline,
-        strikeThrough,
-        sub,
-        italic,
-        highlight,
-        ...props
-      },
-      ref,
-    ) {
-      switch (size) {
-        case "5xl":
-        case "4xl":
-        case "3xl":
-          return (
-            <H1
-              className={headingStyle({
-                size,
-                isTruncated: isTruncated as boolean,
-                bold: bold as boolean,
-                underline: underline as boolean,
-                strikeThrough: strikeThrough as boolean,
-                sub: sub as boolean,
-                italic: italic as boolean,
-                highlight: highlight as boolean,
-                class: className,
-              })}
-              {...props}
-              // @ts-expect-error : type issue
-              ref={ref}
-            />
-          );
-        case "2xl":
-          return (
-            <H2
-              className={headingStyle({
-                size,
-                isTruncated: isTruncated as boolean,
-                bold: bold as boolean,
-                underline: underline as boolean,
-                strikeThrough: strikeThrough as boolean,
-                sub: sub as boolean,
-                italic: italic as boolean,
-                highlight: highlight as boolean,
-                class: className,
-              })}
-              {...props}
-              // @ts-expect-error : type issue
-              ref={ref}
-            />
-          );
-        case "xl":
-          return (
-            <H3
-              className={headingStyle({
-                size,
-                isTruncated: isTruncated as boolean,
-                bold: bold as boolean,
-                underline: underline as boolean,
-                strikeThrough: strikeThrough as boolean,
-                sub: sub as boolean,
-                italic: italic as boolean,
-                highlight: highlight as boolean,
-                class: className,
-              })}
-              {...props}
-              // @ts-expect-error : type issue
-              ref={ref}
-            />
-          );
-        case "lg":
-          return (
-            <H4
-              className={headingStyle({
-                size,
-                isTruncated: isTruncated as boolean,
-                bold: bold as boolean,
-                underline: underline as boolean,
-                strikeThrough: strikeThrough as boolean,
-                sub: sub as boolean,
-                italic: italic as boolean,
-                highlight: highlight as boolean,
-                class: className,
-              })}
-              {...props}
-              // @ts-expect-error : type issue
-              ref={ref}
-            />
-          );
-        case "md":
-          return (
-            <H5
-              className={headingStyle({
-                size,
-                isTruncated: isTruncated as boolean,
-                bold: bold as boolean,
-                underline: underline as boolean,
-                strikeThrough: strikeThrough as boolean,
-                sub: sub as boolean,
-                italic: italic as boolean,
-                highlight: highlight as boolean,
-                class: className,
-              })}
-              {...props}
-              // @ts-expect-error : type issue
-              ref={ref}
-            />
-          );
-        case "sm":
-        case "xs":
-          return (
-            <H6
-              className={headingStyle({
-                size,
-                isTruncated: isTruncated as boolean,
-                bold: bold as boolean,
-                underline: underline as boolean,
-                strikeThrough: strikeThrough as boolean,
-                sub: sub as boolean,
-                italic: italic as boolean,
-                highlight: highlight as boolean,
-                class: className,
-              })}
-              {...props}
-              // @ts-expect-error : type issue
-              ref={ref}
-            />
-          );
-        default:
-          return (
-            <H4
-              className={headingStyle({
-                size,
-                isTruncated: isTruncated as boolean,
-                bold: bold as boolean,
-                underline: underline as boolean,
-                strikeThrough: strikeThrough as boolean,
-                sub: sub as boolean,
-                italic: italic as boolean,
-                highlight: highlight as boolean,
-                class: className,
-              })}
-              {...props}
-              // @ts-expect-error : type issue
-              ref={ref}
-            />
-          );
-      }
-    },
-  ),
-);
-
-const Heading = memo(
-  forwardRef<React.ComponentRef<typeof H1>, IHeadingProps>(function Heading(
-    { className, size = "lg", as: AsComp, ...props },
-    ref,
-  ) {
-    const {
-      isTruncated,
-      bold,
-      underline,
-      strikeThrough,
-      sub,
-      italic,
-      highlight,
-      style,
-    } = props;
-
+const Heading = forwardRef<React.ComponentRef<typeof RNText>, IHeadingProps>(
+  function Heading({ className, size = "lg", style, ...props }, ref) {
     const { getTextStyle, isRTL } = useRTL();
 
-    if (AsComp) {
-      return (
-        <AsComp
-          className={headingStyle({
-            size,
-            isTruncated: isTruncated as boolean,
-            bold: bold as boolean,
-            underline: underline as boolean,
-            strikeThrough: strikeThrough as boolean,
-            sub: sub as boolean,
-            italic: italic as boolean,
-            highlight: highlight as boolean,
-            class: cn(isRTL ? "text-right" : "text-left", className),
-          })}
-          style={[getTextStyle(size as SizeKey), style]}
-          {...props}
-        />
-      );
-    }
-
     return (
-      <MappedHeading
-        className={cn(isRTL ? "text-right" : "text-left", className)}
-        style={[getTextStyle(size as SizeKey), style]}
-        size={size}
+      <RNText
         ref={ref}
+        className={headingStyle({
+          size,
+          class: cn(isRTL ? "text-right" : "text-left", className),
+        })}
+        style={[
+          getTextStyle(size as SizeKey),
+          {
+            fontWeight: "normal",
+          },
+        ]}
         {...props}
       />
     );
-  }),
+  },
 );
-
 Heading.displayName = "Heading";
 
 export { Heading };

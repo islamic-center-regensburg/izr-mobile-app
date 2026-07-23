@@ -1,7 +1,6 @@
 // components/app-screen.tsx
 import { Image, ScrollView, View, ViewProps } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Header } from "./components/header";
 
 interface AppScreenProps extends ViewProps {
   children: React.ReactNode;
@@ -41,11 +40,9 @@ export function AppScreen({ children, style, ...props }: AppScreenProps) {
       />
 
       <ScrollView>
-        <View style={{ paddingTop: insets.top + 20 }} />
         {children}
         <View style={{ paddingTop: insets.bottom + 50 }} />
       </ScrollView>
-      <Header height={insets.top + 20} />
     </View>
   );
 }

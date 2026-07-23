@@ -2,6 +2,7 @@
 export default {
   common: {
     izr: "المركز الإسلامي بريغنسبورغ",
+    copyright: "© {{year}} المركز الإسلامي بريغنسبورغ. جميع الحقوق محفوظة.",
     welcome: "أهلاً وسهلاً",
     "prayer-names": {
       fajr: "الفجــر",
