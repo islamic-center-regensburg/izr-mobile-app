@@ -10,14 +10,14 @@ const HomeScreen = () => {
   const { showTomorrowPrayers } = useNextPrayer();
 
   const todaySlide = (
-    <VStack className="gap-2" key="today">
+    <VStack className="gap-2 p-2" key="today">
       <CurrentDate prayerTimesDay="today" />
       <PrayerTimes prayerTimesDay="today" />
     </VStack>
   );
 
   const tomorrowSlide = (
-    <VStack className="gap-2" key="tomorrow">
+    <VStack className="gap-2 p-2" key="tomorrow">
       <CurrentDate prayerTimesDay="tomorrow" />
       <PrayerTimes prayerTimesDay="tomorrow" />
     </VStack>
