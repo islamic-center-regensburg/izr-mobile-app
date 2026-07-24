@@ -50,6 +50,7 @@ const PrayerTimes = (props: PrayerTimesProps) => {
       {filteredPrayerKeys.map((pnk) => (
         <GridItem key={pnk} _extra={{ className: pnk !== "isha" ? "col-span-1" : "col-span-2" }}>
           <PrayerTimeCard
+            prayerTimesDay={props.prayerTimesDay}
             prayerNameKey={pnk}
             prayerTime={prayerTimes[pnk]}
             iqamaTime={iqamaTimes[pnk] ?? "--.--"}

@@ -43,7 +43,8 @@ const NextPrayer = () => {
     );
   }
   return (
-    <Glassy style={{ padding: 10 }}>
+    <Glassy style={{ padding: 10 }} className="gap-2">
+      <View>
       <Heading size="xs" className="mx-auto text-center">
         {t("common.izr")}
       </Heading>
@@ -74,7 +75,8 @@ const NextPrayer = () => {
             ? formatCountdown(nextPrayer.countdown, t)
             : "--:--:--"}
         </Text>
-      </HStack>
+        </HStack>
+        </View>
     </Glassy>
   );
 };

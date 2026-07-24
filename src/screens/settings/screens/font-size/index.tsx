@@ -15,7 +15,7 @@ export function FontSizeScreen() {
     <ModalScreen>
       <View className="flex-1 px-4 gap-6 py-4 bg-white">
         <View className="gap-2">
-          <Text className="px-1 font-sans-medium">
+          <Text size="2xl" className="px-1 font-sans-medium">
             {t("settings.fontSize")}
           </Text>
           <FontSizeSwitcher />
