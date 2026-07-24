@@ -11,7 +11,7 @@ import { RelativePathString, router } from "expo-router";
 import { ChevronLeft, ChevronRight } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
 import { Pressable, View } from "react-native";
-import { AppScreen } from "../app-screen";
+import { AppScreen } from "../common/app-screen";
 
 type SettingItem = {
   label: NestedKeyOf<TranslationKeys>;

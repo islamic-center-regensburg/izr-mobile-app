@@ -6,6 +6,7 @@ import { Text } from "@/src/components/text";
 import { VStack } from "@/src/components/vstack";
 import { NOTIFIABLE_PRAYERS } from "@/src/notifications/scheduler/constants";
 import { scheduleTestNotification } from "@/src/notifications/scheduler/schedule-one";
+import { ModalScreen } from "@/src/screens/common/modal-screen";
 import { useNotificationSettingsStore } from "@/src/store/notification-settings";
 import { PrayerName } from "@/src/store/notifications";
 import { useTranslation } from "react-i18next";
@@ -33,20 +34,22 @@ export function NotificationsScreen() {
   const { t } = useTranslation();
 
   return (
-    <View className="flex-1 px-4 gap-6 py-4 bg-white">
-      <View className="gap-2">
-        <Text className="px-1 font-sans-medium">
-          {t("notifications-screen.title")}
-        </Text>
-        <VStack space="md" className="px-1">
-          {NOTIFIABLE_PRAYERS.map((prayer) => (
-            <PrayerNotificationRow key={prayer} prayer={prayer} />
-          ))}
-        </VStack>
-        <Button onPress={scheduleTestNotification}>
-          <ButtonText>Test Notification</ButtonText>
-        </Button>
+    <ModalScreen>
+      <View className="flex-1 px-4 gap-6 py-4 bg-white">
+        <View className="gap-2">
+          <Text className="px-1 font-sans-medium">
+            {t("notifications-screen.title")}
+          </Text>
+          <VStack space="md" className="px-1">
+            {NOTIFIABLE_PRAYERS.map((prayer) => (
+              <PrayerNotificationRow key={prayer} prayer={prayer} />
+            ))}
+          </VStack>
+          <Button onPress={scheduleTestNotification}>
+            <ButtonText>Test Notification</ButtonText>
+          </Button>
+        </View>
       </View>
-    </View>
+    </ModalScreen>
   );
 }

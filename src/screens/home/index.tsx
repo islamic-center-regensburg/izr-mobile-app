@@ -1,6 +1,6 @@
 import SwipeableCarousel from "@/src/components/swipeable-carousel";
 import { VStack } from "@/src/components/vstack";
-import { AppScreen } from "../app-screen";
+import { AppScreen } from "../common/app-screen";
 import CurrentDate from "./components/current-date";
 import NextPrayer from "./components/next-prayer";
 import PrayerTimes from "./components/prayer-times";

@@ -2,6 +2,7 @@
 import { Heading } from "@/src/components/heading";
 import { Text } from "@/src/components/text";
 import { VStack } from "@/src/components/vstack";
+import { LinearGradient } from "expo-linear-gradient";
 import {
   DrawerContentComponentProps,
   DrawerItemList,
@@ -27,7 +28,10 @@ export function DrawerContent(props: DrawerContentComponentProps) {
         }}
       >
         <DrawerItemList {...props} />
-        <VStack className="flex-1 items-center justify-end pb-4">
+        <VStack
+          className="flex-1 items-center justify-end pb-4"
+          style={{ paddingBottom: insets.bottom + 25 }}
+        >
           <Image
             source={require("@/assets/images/icon.png")}
             resizeMode="cover"
@@ -54,6 +58,18 @@ export function DrawerContent(props: DrawerContentComponentProps) {
           width: 450,
           height: 450,
           opacity: 0.15,
+        }}
+      />
+      <LinearGradient
+        colors={["rgba(60, 60, 60, 0)", "rgba(60, 60, 60, 0.35)"]}
+        locations={[0, 1]}
+        pointerEvents="none"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: insets.bottom + 100,
         }}
       />
     </View>
