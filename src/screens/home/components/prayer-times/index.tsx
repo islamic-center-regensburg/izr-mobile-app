@@ -37,12 +37,18 @@ const PrayerTimes = (props: PrayerTimesProps) => {
     );
   }
 
+  const isTodayFriday = (date: string) => {
+    const [day, month, year] = date.split("-").map(Number);
+    const parsed = new Date(year, month - 1, day); // JS months are 0-indexed
+    return parsed.getDay() === 5;
+  };
+
   const filteredPrayerKeys = prayerNameKeys.filter((pnk) => pnk !== "jumah");
 
   return (
     <Grid className="gap-2" _extra={{ className: "grid-cols-2" }}>
       {filteredPrayerKeys.map((pnk) => (
-        <GridItem key={pnk} _extra={{ className: "col-span-1" }}>
+        <GridItem key={pnk} _extra={{ className: pnk !== "isha" ? "col-span-1" : "col-span-2" }}>
           <PrayerTimeCard
             prayerNameKey={pnk}
             prayerTime={prayerTimes[pnk]}
@@ -50,9 +56,10 @@ const PrayerTimes = (props: PrayerTimesProps) => {
           />
         </GridItem>
       ))}
-      <GridItem _extra={{ className: "col-span-1" }}>
+      {isTodayFriday(prayerTimes?.gregorian_date) && 
+      <GridItem _extra={{ className: "col-span-2" }}>
         <JumahTimeCard iqamaTimes={iqamaTimes.jumah} />
-      </GridItem>
+      </GridItem>}
     </Grid>
   );
 };

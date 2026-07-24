@@ -2,15 +2,18 @@ import Glassy from "@/src/components/glassy";
 import { HStack } from "@/src/components/hstack";
 import { Text } from "@/src/components/text";
 import { VStack } from "@/src/components/vstack";
+import { useLangStore } from "@/src/store/lang";
 import { PrayerTimesDay } from "@/src/store/prayer-times";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator } from "react-native";
 import { usePrayerTimes } from "../hooks/use-prayer-times";
+import { getDayNameFromDate } from "../utils/get-day-name";
 interface CurrentDateProps {
   prayerTimesDay: PrayerTimesDay;
 }
 const CurrentDate = (props: CurrentDateProps) => {
   const { prayerTimes, isLoading } = usePrayerTimes(props.prayerTimesDay);
+  const { lang } = useLangStore();
   const { t } = useTranslation();
   if (isLoading) {
     return (
@@ -22,7 +25,7 @@ const CurrentDate = (props: CurrentDateProps) => {
   return (
     <Glassy style={{ padding: 10 }}>
       <VStack className="w-full items-center bg-transparent">
-        <Text>{t(`home-screen.${props.prayerTimesDay}`)}</Text>
+        <Text className="w-full text-center">{t(`home-screen.${props.prayerTimesDay}`)} { getDayNameFromDate(prayerTimes?.gregorian_date,lang) }</Text>
         <HStack className="w-full justify-between">
           <Text className="text-black">{t("home-screen.hijri-date")}</Text>
           <Text className="text-black">{prayerTimes?.hijri_date}</Text>
@@ -30,6 +33,10 @@ const CurrentDate = (props: CurrentDateProps) => {
         <HStack className="w-full justify-between">
           <Text className="text-black">{t("home-screen.gregorian-date")}</Text>
           <Text className="text-black">{prayerTimes?.gregorian_date}</Text>
+        </HStack>
+        <HStack className="w-full justify-between">
+          <Text className="text-black">{t("common.prayer-names.sunrise")}</Text>
+          <Text className="text-black">{prayerTimes?.shuruq}</Text>
         </HStack>
       </VStack>
     </Glassy>
