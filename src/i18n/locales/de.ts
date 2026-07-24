@@ -8,6 +8,7 @@ export default {
     welcome: "Willkommen",
     "prayer-names": {
       fajr: "Fajr",
+      sunrise: "Sonnenaufgang",
       dhuhr: "Dhuhr",
       asr: "Asr",
       maghrib: "Maghrib",
