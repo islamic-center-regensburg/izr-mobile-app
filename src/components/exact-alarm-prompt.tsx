@@ -13,8 +13,7 @@ import {
   ModalBackdrop,
   ModalBody,
   ModalContent,
-  ModalFooter,
-  ModalHeader,
+  ModalFooter
 } from "./modal";
 import { Text } from "./text";
 import { VStack } from "./vstack";
@@ -40,9 +39,7 @@ export function ExactAlarmPrompt() {
     <Modal isOpen={visible} onClose={dismiss}>
       <ModalBackdrop />
       <ModalContent>
-        <ModalHeader>
-          <Heading size="md">{t("notifications.exactAlarm.title")}</Heading>
-        </ModalHeader>
+          <Heading size="lg">{t("notifications.exactAlarm.title")}</Heading>
         <ModalBody>
           <VStack space="sm">
             <Text>{t("notifications.exactAlarm.body")}</Text>
@@ -53,7 +50,7 @@ export function ExactAlarmPrompt() {
             <ButtonText>{t("notifications.exactAlarm.dismiss")}</ButtonText>
           </Button>
           <Button onPress={handleConfirm} className="flex-1">
-            <ButtonText>
+            <ButtonText className="text-center">
               {t("notifications.exactAlarm.openSettings")}
             </ButtonText>
           </Button>
