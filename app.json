@@ -37,9 +37,10 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/images/icon.png",
-          "color": "#ffffff",
-          "sounds": ["./assets/sounds/adhan/abdul_basit.wav"]
+          "icon": "./assets/images/notification-icon.png",
+          "color": "#274b40",
+          "sounds": ["./assets/sounds/adhan/abdul_basit.wav"],
+          "enableAndroidExactAlarms": true
         }
       ],
       "expo-image"
