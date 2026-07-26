@@ -2,9 +2,11 @@ export default {
   common: {
     izr: "Islamic Center of Regensburg",
     copyright: "© {{year}} Islamic Center of Regensburg. All rights reserved.",
+    loading: "Getting everything ready for you…",
     welcome: "Welcome",
     "prayer-names": {
       fajr: "Fajr",
+      sunrise: "Sunrise",
       dhuhr: "Dhuhr",
       asr: "Asr",
       maghrib: "Maghrib",

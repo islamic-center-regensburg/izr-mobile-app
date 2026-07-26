@@ -2,10 +2,13 @@
 export default {
   common: {
     izr: "المركز الإسلامي بريغنسبورغ",
+    loading: "جارٍ تحضير مواقيت الصلاة…",
+
     copyright: "© {{year}} المركز الإسلامي بريغنسبورغ. جميع الحقوق محفوظة.",
     welcome: "أهلاً وسهلاً",
     "prayer-names": {
       fajr: "الفجــر",
+      sunrise: "الشروق",
       dhuhr: "الظهــر",
       asr: "العصــر",
       maghrib: "المغرب",

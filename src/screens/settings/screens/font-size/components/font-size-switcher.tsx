@@ -1,9 +1,9 @@
 // components/FontSizeSwitcher.tsx
+import { HStack } from "@/src/components/hstack";
+import { Text } from "@/src/components/text";
+import { useRTL } from "@/src/hooks/use-rtl";
+import { FontSizeScale, useFontSizeStore } from "@/src/store/font-size";
 import { Pressable } from "react-native";
-import { HStack } from "../../../components/hstack";
-import { Text } from "../../../components/text";
-import { useRTL } from "../../../hooks/use-rtl";
-import { FontSizeScale, useFontSizeStore } from "../../../store/font-size";
 
 const FONT_SIZES: {
   label: string;

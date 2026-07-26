@@ -44,8 +44,12 @@ const notificationSettingsStore = create<NotificationSettingsState>()(
     {
       name: "st-notification-settings",
       storage: createJSONStorage(() => AsyncStorage),
-      onRehydrateStorage: () => (state) => {
+      onRehydrateStorage: () => async (state) => {
         if (state) state.hydrated = true;
+        const raw = await AsyncStorage.getItem("st-notification-settings");
+        if (!raw) {
+          notificationSettingsStore.setState({ enabled: DEFAULT_ENABLED });
+        }
       },
     },
   ),

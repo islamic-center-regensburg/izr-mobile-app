@@ -5,7 +5,7 @@ import {
   isIqamaTimesCacheValid,
   useIqamaTimesStore,
 } from "@/src/store/iqama-times";
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { usePrayerTimes } from "./use-prayer-times";
 
@@ -82,9 +82,8 @@ export function useIqamaTimes() {
   } = usePrayerTimes("today");
 
   // ── Step 1: fetch iqama times only if cache is invalid ────────────
-  const { data: fetchedIqamaTimes, ...iqamaTimesQuery } = useQuery({
+  const { data: fetchedIqamaTimes, ...iqamaTimesQuery } = useSuspenseQuery({
     ...getPrayerIqamaQueryOptions(mosque?.id ?? ""),
-    enabled: !!mosque?.id && hydrated && !isIqamaTimesCacheValid(),
   });
 
   // ── Step 2: sync fetched data → zustand store ─────────────────────

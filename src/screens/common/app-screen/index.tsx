@@ -1,4 +1,5 @@
 // components/app-screen.tsx
+import { LinearGradient } from "expo-linear-gradient";
 import { Image, ScrollView, View, ViewProps } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -41,8 +42,20 @@ export function AppScreen({ children, style, ...props }: AppScreenProps) {
 
       <ScrollView>
         {children}
-        <View style={{ paddingTop: insets.bottom + 50 }} />
+        <View style={{ height: insets.bottom + 25 }} />
       </ScrollView>
+      <LinearGradient
+        colors={["rgba(60, 60, 60, 0)", "rgba(60, 60, 60, 0.35)"]}
+        locations={[0, 1]}
+        pointerEvents="none"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: insets.bottom + 100,
+        }}
+      />
     </View>
   );
 }

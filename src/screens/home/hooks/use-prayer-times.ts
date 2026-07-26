@@ -7,7 +7,7 @@ import {
   PrayerTimesDay,
   usePrayerTimesStore,
 } from "@/src/store/prayer-times";
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
 export function usePrayerTimes(prayerTimesday: PrayerTimesDay) {
@@ -26,20 +26,18 @@ export function usePrayerTimes(prayerTimesday: PrayerTimesDay) {
   const day = date.getDate();
 
   // ── Step 1: fetch mosque ──────────────────────────────────────────
-  const { data: mosques, ...mosquesQuery } = useQuery(
+  const { data: mosques, ...mosquesQuery } = useSuspenseQuery(
     getMosquesQueryOptions({ query: { name: izrMosqueName } }),
   );
 
   const izrMosque = mosques?.data[0];
 
   // ── Step 2: fetch prayer times only if cache is invalid ───────────
-  const { data: fetchedPrayerTimes, ...prayerTimesQuery } = useQuery({
+  const { data: fetchedPrayerTimes, ...prayerTimesQuery } = useSuspenseQuery({
     ...getPrayerTimesForMosqueQueryOptions({
       mosque_id: izrMosque?.id ?? "",
       query: { year, month, day, source: "stored" },
     }),
-    enabled:
-      !!izrMosque?.id && hydrated && !isPrayerTimesCacheValid(prayerTimesday),
   });
 
   // ── Step 3: sync fetched data → zustand store ─────────────────────
