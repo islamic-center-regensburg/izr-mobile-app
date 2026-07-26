@@ -26,7 +26,6 @@ const CurrentDate = (props: CurrentDateProps) => {
     <Glassy style={{ padding: 10 }}>
       <VStack className="w-full items-center bg-transparent">
         <Text className="w-full text-center">
-          {t(`home-screen.${props.prayerTimesDay}`)}{" "}
           {getDayNameFromDate(prayerTimes?.gregorian_date, lang)}
         </Text>
         <HStack className="w-full justify-between">

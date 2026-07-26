@@ -43,7 +43,7 @@ const NextPrayer = () => {
   }
   return (
     <Glassy style={{ padding: 10 }} className="gap-2">
-      <View>
+      <View className="flex-1 h-auto">
         <Heading size="xs" className="mx-auto text-center">
           {t("common.izr")}
         </Heading>
