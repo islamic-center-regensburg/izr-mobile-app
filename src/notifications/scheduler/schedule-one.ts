@@ -56,6 +56,7 @@ export async function scheduleOne(
       prayer,
       day,
       triggerTimestamp: timestamp,
+      triggerTimeString: new Date(timestamp).toLocaleTimeString(),
       status: "scheduled",
     });
   } catch {
@@ -64,6 +65,7 @@ export async function scheduleOne(
       prayer,
       day,
       triggerTimestamp: timestamp,
+      triggerTimeString: new Date(timestamp).toLocaleTimeString(),
       status: "failed",
     });
   }

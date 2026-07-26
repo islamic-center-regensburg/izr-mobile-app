@@ -24,6 +24,7 @@ export interface ScheduledNotification {
   prayer: PrayerName;
   day: NotificationDay;
   triggerTimestamp: number; // epoch ms
+  triggerTimeString: string; // formatted time string
   status: NotificationStatus;
 }
 
