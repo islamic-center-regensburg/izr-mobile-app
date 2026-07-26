@@ -13,7 +13,7 @@ import { usePrayerTimesForDay } from "../store/prayer-times";
 export function useNotificationScheduler() {
   const { prayerTimes: todayTimes } = usePrayerTimesForDay("today");
   const { prayerTimes: tomorrowTimes } = usePrayerTimesForDay("tomorrow");
-  const { enabled } = useNotificationSettingsStore();
+  const { enabled, exactAlarmAccessGranted } = useNotificationSettingsStore();
   const prevEnabledRef = useRef(enabled);
 
   const runScheduling = useCallback(async () => {
@@ -23,6 +23,8 @@ export function useNotificationScheduler() {
       if (req.status !== "granted") return;
     }
 
+    if (!exactAlarmAccessGranted) return;
+
     await Promise.all([
       schedulePrayerNotificationsForDay("today", todayTimes),
       schedulePrayerNotificationsForDay("tomorrow", tomorrowTimes),
@@ -31,7 +33,7 @@ export function useNotificationScheduler() {
     const stamp = getTodayString();
     notificationsSchedulerActions.setLastScheduledDate("today", stamp);
     notificationsSchedulerActions.setLastScheduledDate("tomorrow", stamp);
-  }, [todayTimes, tomorrowTimes]);
+  }, [todayTimes, tomorrowTimes, exactAlarmAccessGranted]);
 
   useEffect(() => {
     if (!todayTimes && !tomorrowTimes) return;
@@ -45,7 +47,13 @@ export function useNotificationScheduler() {
     if (!settingsChanged && !dayStale) return;
 
     runScheduling();
-  }, [todayTimes, tomorrowTimes, enabled, runScheduling]);
+  }, [
+    todayTimes,
+    tomorrowTimes,
+    enabled,
+    exactAlarmAccessGranted,
+    runScheduling,
+  ]);
 
   return { rescheduleAll: runScheduling };
 }

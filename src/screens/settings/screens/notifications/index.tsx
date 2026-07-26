@@ -1,5 +1,6 @@
 import { PrayerName as APIPrayerName } from "@/src/api/gen";
 import { Button, ButtonText } from "@/src/components/button";
+import { Divider } from "@/src/components/divider";
 import { HStack } from "@/src/components/hstack";
 import { Switch } from "@/src/components/switch";
 import { Text } from "@/src/components/text";
@@ -19,7 +20,6 @@ function PrayerNotificationRow({ prayer }: { prayer: PrayerName }) {
   return (
     <HStack className="justify-between items-center py-1">
       <Text className="text-base">
-        {" "}
         {t(`common.prayer-names.${prayer as APIPrayerName}`)}{" "}
       </Text>
       <Switch
@@ -32,7 +32,11 @@ function PrayerNotificationRow({ prayer }: { prayer: PrayerName }) {
 
 export function NotificationsScreen() {
   const { t } = useTranslation();
+  const { exactAlarmAccessGranted } = useNotificationSettingsStore();
+  const { setFirstTimeExactAlarmAccessPrompted } =
+    useNotificationSettingsStore();
 
+  const notificationScheduleTimes = [0, 1, 2, 4, 6, 8, 10];
   return (
     <ModalScreen>
       <View className="flex-1 px-4 gap-6 py-4 bg-white">
@@ -45,9 +49,31 @@ export function NotificationsScreen() {
               <PrayerNotificationRow key={prayer} prayer={prayer} />
             ))}
           </VStack>
-          <Button onPress={scheduleTestNotification}>
-            <ButtonText>Test Notification</ButtonText>
-          </Button>
+
+          {!exactAlarmAccessGranted && (
+            <>
+              <Divider className="border-t border-gray-300 my-4" />
+              <VStack space="sm" className="px-1">
+                <Text className="text-sm text-gray-500">
+                  {t("notifications-screen.exact-alarm-warning")}
+                </Text>
+                <Button
+                  onPress={() => setFirstTimeExactAlarmAccessPrompted(false)}
+                >
+                  <ButtonText>
+                    {t("notifications-screen.exact-alarm-button")}
+                  </ButtonText>
+                </Button>
+              </VStack>
+            </>
+          )}
+          <Divider className="border-t border-gray-300 my-4" />
+          <Text>Test Notification Schedules</Text>
+          {notificationScheduleTimes.map((time) => (
+            <Button key={time} onPress={() => scheduleTestNotification(time)}>
+              <ButtonText>{time} min</ButtonText>
+            </Button>
+          ))}
         </View>
       </View>
     </ModalScreen>

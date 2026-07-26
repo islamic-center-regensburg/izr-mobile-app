@@ -7,10 +7,14 @@ type PrayerNotificationSettings = Record<PrayerName, boolean>;
 
 interface NotificationSettingsState {
   enabled: PrayerNotificationSettings;
+  firstTimeExactAlarmAccessPrompted: boolean;
+  exactAlarmAccessGranted: boolean;
   hydrated: boolean;
   setEnabled: (prayer: PrayerName, enabled: boolean) => void;
   toggleEnabled: (prayer: PrayerName) => void;
   isEnabled: (prayer: PrayerName) => boolean;
+  setExactAlarmAccessGranted: (granted: boolean) => void;
+  setFirstTimeExactAlarmAccessPrompted: (granted: boolean) => void;
 }
 
 // sunrise defaults to off since it's not a prayer you pray, just a marker
@@ -27,6 +31,14 @@ const notificationSettingsStore = create<NotificationSettingsState>()(
   persist(
     (set, get) => ({
       enabled: DEFAULT_ENABLED,
+      // Tracks whether the user has granted Android's "Alarms & reminders"
+      // (SCHEDULE_EXACT_ALARM) permission. There's no JS API to query this
+      // directly from the OS, so we track the user's self-reported/assumed
+      // state here — set to true after they return from the settings screen
+      // via openExactAlarmSettings(), used to decide whether to show a
+      // "fix notification timing" prompt in the notifications settings UI.
+      exactAlarmAccessGranted: false,
+      firstTimeExactAlarmAccessPrompted: false,
       hydrated: false,
 
       setEnabled: (prayer, enabled) =>
@@ -40,6 +52,12 @@ const notificationSettingsStore = create<NotificationSettingsState>()(
         })),
 
       isEnabled: (prayer) => get().enabled[prayer],
+
+      setFirstTimeExactAlarmAccessPrompted: (granted) =>
+        set({ firstTimeExactAlarmAccessPrompted: granted }),
+
+      setExactAlarmAccessGranted: (granted) =>
+        set({ exactAlarmAccessGranted: granted }),
     }),
     {
       name: "st-notification-settings",
@@ -48,7 +66,11 @@ const notificationSettingsStore = create<NotificationSettingsState>()(
         if (state) state.hydrated = true;
         const raw = await AsyncStorage.getItem("st-notification-settings");
         if (!raw) {
-          notificationSettingsStore.setState({ enabled: DEFAULT_ENABLED });
+          notificationSettingsStore.setState({
+            enabled: DEFAULT_ENABLED,
+            exactAlarmAccessGranted: false,
+            firstTimeExactAlarmAccessPrompted: false,
+          });
         }
       },
     },
@@ -60,6 +82,9 @@ export const useNotificationSettingsStore = () =>
 
 export const usePrayerNotificationEnabled = (prayer: PrayerName) =>
   notificationSettingsStore((s) => s.enabled[prayer]);
+
+export const useExactAlarmAccessGranted = () =>
+  notificationSettingsStore((s) => s.exactAlarmAccessGranted);
 
 export const getNotificationSettingsState = () =>
   notificationSettingsStore.getState();

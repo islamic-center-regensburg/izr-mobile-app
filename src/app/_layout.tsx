@@ -1,14 +1,12 @@
 import { Stack } from "expo-router";
 import { StatusBar } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { ExactAlarmPrompt } from "../components/exact-alarm-prompt";
 import { GluestackUIProvider } from "../components/gluestack-ui-provider";
 import { I18nSync } from "../components/i18n-sync";
 import TanstackSuery from "../components/tanstack-query";
 import { useNotificationScheduler } from "../hooks/use-notification-scheduler";
 import { useThmanyahFonts } from "../hooks/use-thamanyah-fonts";
-import { setupNotifications } from "../notifications";
-
-setupNotifications();
 
 export default function RootLayout() {
   const { loaded } = useThmanyahFonts();
@@ -25,6 +23,8 @@ export default function RootLayout() {
       <TanstackSuery>
         <GluestackUIProvider>
           <I18nSync />
+          <ExactAlarmPrompt />
+
           <Stack>
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen

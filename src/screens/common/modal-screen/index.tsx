@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { Platform, View, ViewProps } from "react-native";
+import { Platform, ScrollView, View, ViewProps } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface ModalScreenProps extends ViewProps {
@@ -11,17 +11,19 @@ export function ModalScreen({ children, style, ...props }: ModalScreenProps) {
   const isAndroid = Platform.OS === "android";
 
   return (
-    <View className="flex-1" style={style} {...props}>
-      <View
-        className="bg-white"
-        style={{ flex: 1, paddingTop: isAndroid ? insets.top : 0 }}
-      >
-        {children}
-      </View>
-      <View
-        className="bg-white"
-        style={{ flex: 1, paddingBottom: insets.bottom + 25 }}
-      />
+    <View className="flex-1 bg-white">
+      <ScrollView className="flex-1" style={style} {...props}>
+        <View
+          className="bg-white"
+          style={{ flex: 1, paddingTop: isAndroid ? insets.top : 0 }}
+        >
+          {children}
+        </View>
+        <View
+          className="bg-white"
+          style={{ flex: 1, paddingBottom: insets.bottom + 25 }}
+        />
+      </ScrollView>
 
       <LinearGradient
         colors={["rgba(60, 60, 60, 0)", "rgba(60, 60, 60, 0.35)"]}
