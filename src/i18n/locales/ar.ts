@@ -54,7 +54,7 @@ export default {
     iqama: "الإقامة",
     adhan: "الأذان",
     today: "الـيوم",
-    tomorrow: "غــداً",
+    tomorrow: "الــغد",
     "remaining-time": "الوقت المتبقي",
     "hijri-date": "التاريخ الهجري",
     "gregorian-date": "التاريخ الميلادي",
