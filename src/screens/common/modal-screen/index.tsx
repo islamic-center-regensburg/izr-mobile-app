@@ -12,9 +12,16 @@ export function ModalScreen({ children, style, ...props }: ModalScreenProps) {
 
   return (
     <View className="flex-1" style={style} {...props}>
-        <View className="bg-white" style={{ flex: 1, paddingTop: isAndroid ? insets.top : 0 }}>
-          {children}
-        </View>
+      <View
+        className="bg-white"
+        style={{ flex: 1, paddingTop: isAndroid ? insets.top : 0 }}
+      >
+        {children}
+      </View>
+      <View
+        className="bg-white"
+        style={{ flex: 1, paddingBottom: insets.bottom + 25 }}
+      />
 
       <LinearGradient
         colors={["rgba(60, 60, 60, 0)", "rgba(60, 60, 60, 0.35)"]}

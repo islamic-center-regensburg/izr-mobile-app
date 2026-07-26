@@ -40,7 +40,10 @@ export function AppScreen({ children, style, ...props }: AppScreenProps) {
         }}
       />
 
-      <ScrollView>{children}</ScrollView>
+      <ScrollView>
+        {children}
+        <View style={{ height: insets.bottom + 25 }} />
+      </ScrollView>
       <LinearGradient
         colors={["rgba(60, 60, 60, 0)", "rgba(60, 60, 60, 0.35)"]}
         locations={[0, 1]}

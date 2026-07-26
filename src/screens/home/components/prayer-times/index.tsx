@@ -48,7 +48,10 @@ const PrayerTimes = (props: PrayerTimesProps) => {
   return (
     <Grid className="gap-2" _extra={{ className: "grid-cols-2" }}>
       {filteredPrayerKeys.map((pnk) => (
-        <GridItem key={pnk} _extra={{ className: pnk !== "isha" ? "col-span-1" : "col-span-2" }}>
+        <GridItem
+          key={pnk}
+          _extra={{ className: pnk !== "isha" ? "col-span-1" : "col-span-2" }}
+        >
           <PrayerTimeCard
             prayerTimesDay={props.prayerTimesDay}
             prayerNameKey={pnk}
@@ -57,10 +60,11 @@ const PrayerTimes = (props: PrayerTimesProps) => {
           />
         </GridItem>
       ))}
-      {isTodayFriday(prayerTimes?.gregorian_date) && 
-      <GridItem _extra={{ className: "col-span-2" }}>
-        <JumahTimeCard iqamaTimes={iqamaTimes.jumah} />
-      </GridItem>}
+      {isTodayFriday(prayerTimes?.gregorian_date) && (
+        <GridItem _extra={{ className: "col-span-2" }}>
+          <JumahTimeCard iqamaTimes={iqamaTimes.jumah} />
+        </GridItem>
+      )}
     </Grid>
   );
 };
