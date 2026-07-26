@@ -32,10 +32,19 @@ export default {
   },
   "notifications-screen": {
     title: "Notifications Settings",
+    "exact-alarm-warning":
+      "The IZR app does not have access to Alarms & Reminders in your device settings.",
+    "exact-alarm-button": "Grant Access",
   },
   notifications: {
     adhanTitle: "Adhan Time for {{prayer}}",
     adhanBody: "It's time for {{prayer}} prayer.",
+    exactAlarm: {
+      title: "Exact Alarm Access Needed",
+      body: "To ensure that prayer notifications are delivered on time, please grant the app access to Alarms & Reminders in your device settings.",
+      openSettings: "Open Settings",
+      dismiss: "Dismiss",
+    },
   },
   "home-screen": {
     "error-loading-prayer-times": "Got an Error While loading Prayer Times",

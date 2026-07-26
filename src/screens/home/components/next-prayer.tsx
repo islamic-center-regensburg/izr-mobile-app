@@ -72,7 +72,9 @@ const NextPrayer = () => {
               : cn(rtlClass, "items-end"),
           )}
         >
-          <Text size="lg">{t("home-screen.remaining-time")}</Text>
+          <Text size="lg" className="flex-1 w-full">
+            {t("home-screen.remaining-time")}
+          </Text>
           <Text size="xl" className="font-sans-regular-no-ss01">
             {nextPrayer?.countdown
               ? formatCountdown(nextPrayer.countdown, t)

@@ -56,6 +56,7 @@ export async function scheduleOne(
       prayer,
       day,
       triggerTimestamp: timestamp,
+      triggerTimeString: new Date(timestamp).toLocaleTimeString(),
       status: "scheduled",
     });
   } catch {
@@ -64,26 +65,14 @@ export async function scheduleOne(
       prayer,
       day,
       triggerTimestamp: timestamp,
+      triggerTimeString: new Date(timestamp).toLocaleTimeString(),
       status: "failed",
     });
   }
 }
 
-export async function scheduleTestNotification() {
-  const { status } = await Notifications.getPermissionsAsync();
-  if (status !== "granted") {
-    const req = await Notifications.requestPermissionsAsync();
-    if (req.status !== "granted") {
-      console.log("Test notification: permission not granted");
-      return;
-    }
-  }
-
-  const timestamp = Date.now() + 5 * 1000; // 5 sec from now
+export async function scheduleTestNotification(minutesFromNow = 3) {
+  const timestamp = Date.now() + minutesFromNow * 60 * 1000;
   await scheduleOne("today", "fajr", timestamp);
-
-  console.log(
-    "Test notification scheduled for",
-    new Date(timestamp).toLocaleTimeString(),
-  );
+  console.log("Scheduled for:", new Date(timestamp).toString());
 }

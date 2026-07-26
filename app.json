@@ -16,7 +16,8 @@
         "foregroundImage": "./assets/images/icon.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.aminbl.izrapp"
+      "package": "com.aminbl.izrapp",
+      "permissions": ["android.permission.SCHEDULE_EXACT_ALARM"]
     },
     "web": {
       "output": "static",
@@ -37,9 +38,10 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/images/icon.png",
-          "color": "#ffffff",
-          "sounds": ["./assets/sounds/adhan/abdul_basit.wav"]
+          "icon": "./assets/images/notification-icon.png",
+          "color": "#274b40",
+          "sounds": ["./assets/sounds/adhan/abdul_basit.wav"],
+          "enableAndroidExactAlarms": true
         }
       ],
       "expo-image"

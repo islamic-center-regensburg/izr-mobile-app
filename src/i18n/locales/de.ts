@@ -36,10 +36,19 @@ export default {
   },
   "notifications-screen": {
     title: "Benachrichtigungseinstellungen",
+    "exact-alarm-warning":
+      "Das IZR-App hat keinen Zugriff auf Alarme & Erinnerungen in Ihren Geräteeinstellungen.",
+    "exact-alarm-button": "Zugriff erteilen",
   },
   notifications: {
     adhanTitle: "Adhan-Zeit für {{prayer}}",
     adhanBody: "Es ist Zeit für das {{prayer}}-Gebet.",
+    exactAlarm: {
+      title: "Zugriff auf exakte Alarme erforderlich",
+      body: "Um sicherzustellen, dass Gebetsbenachrichtigungen pünktlich zugestellt werden, erteilen Sie bitte der App Zugriff auf Alarme & Erinnerungen in den Geräteeinstellungen.",
+      openSettings: "Einstellungen öffnen",
+      dismiss: "Verwerfen",
+    },
   },
   "home-screen": {
     "error-loading-prayer-times": "Fehler beim Laden der Gebetszeiten",

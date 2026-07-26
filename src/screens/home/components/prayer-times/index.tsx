@@ -1,6 +1,7 @@
 import Glassy from "@/src/components/glassy";
 import { Grid, GridItem } from "@/src/components/grid";
 import { Text } from "@/src/components/text";
+import { useLangStore } from "@/src/store/lang";
 import { PrayerTimesDay } from "@/src/store/prayer-times";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, View } from "react-native";
@@ -21,6 +22,7 @@ const PrayerTimes = (props: PrayerTimesProps) => {
   const { iqamaTimes, ...iqamaTimesQuery } = useIqamaTimes();
 
   const { t } = useTranslation();
+  const { lang } = useLangStore();
 
   if (prayerTimesQuery.isLoading || iqamaTimesQuery.isLoading) {
     return (
@@ -45,9 +47,21 @@ const PrayerTimes = (props: PrayerTimesProps) => {
 
   const filteredPrayerKeys = prayerNameKeys.filter((pnk) => pnk !== "jumah");
 
+  function swapEveryPair<T>(array: T[]): T[] {
+    if (lang === "ar") {
+      const result = [...array];
+
+      for (let i = 0; i < result.length - 1; i += 2) {
+        [result[i], result[i + 1]] = [result[i + 1], result[i]];
+      }
+      return result;
+    }
+    return array;
+  }
+
   return (
     <Grid className="gap-2" _extra={{ className: "grid-cols-2" }}>
-      {filteredPrayerKeys.map((pnk) => (
+      {swapEveryPair(filteredPrayerKeys).map((pnk) => (
         <GridItem
           key={pnk}
           _extra={{ className: pnk !== "isha" ? "col-span-1" : "col-span-2" }}

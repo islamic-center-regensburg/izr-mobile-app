@@ -34,10 +34,19 @@ export default {
   },
   "notifications-screen": {
     title: "إعدادات الإشعارات",
+    "exact-alarm-warning":
+      "التطبيق لا يملك الوصول إلى التنبيهات والأذان في إعدادات الجهاز.",
+    "exact-alarm-button": "منح الوصول",
   },
   notifications: {
     adhanTitle: "موعد أذان {{prayer}}",
     adhanBody: "حان الآن وقت صلاة {{prayer}}.",
+    exactAlarm: {
+      title: "الوصول إلى المنبهات الدقيقة مطلوب",
+      body: "لضمان تسليم إشعارات الصلاة في الوقت المناسب، يرجى منح التطبيق الوصول إلى التنبيهات والأذان في إعدادات الجهاز.",
+      openSettings: "فتح الإعدادات",
+      dismiss: "تجاهل",
+    },
   },
   "home-screen": {
     "error-loading-prayer-times": "حدث خطأ أثناء تحميل أوقات الصلاة",
