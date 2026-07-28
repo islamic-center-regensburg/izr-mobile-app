@@ -21,7 +21,7 @@ interface NotificationSettingsState {
 // sunrise defaults to off since it's not a prayer you pray, just a marker
 const DEFAULT_ENABLED: PrayerNotificationSettings = {
   fajr: true,
-  sunrise: false,
+  shuruq: false,
   dhuhr: true,
   asr: true,
   maghrib: true,
@@ -64,7 +64,8 @@ const notificationSettingsStore = create<NotificationSettingsState>()(
           notificationSettingsStore.setState({
             enabled: DEFAULT_ENABLED,
             exactAlarmAccessGranted: Platform.OS === "ios" ? true : false,
-            firstTimeExactAlarmAccessPrompted: Platform.OS === "ios" ? true : false,
+            firstTimeExactAlarmAccessPrompted:
+              Platform.OS === "ios" ? true : false,
           });
         }
       },

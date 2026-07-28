@@ -5,7 +5,7 @@ import { getTodayString } from "./common";
 
 export type PrayerName =
   | "fajr"
-  | "sunrise"
+  | "shuruq"
   | "dhuhr"
   | "asr"
   | "maghrib"

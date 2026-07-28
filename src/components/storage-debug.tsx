@@ -43,33 +43,32 @@ export function StorageDebug() {
       return value; // not JSON (e.g. plain "en", "sm") — render as-is
     }
   }
-  
-  if (process.env.EXPO_PUBLIC_STAGE === "prod")
-    return null
+
+  if (process.env.EXPO_PUBLIC_STAGE === "prod") return null;
 
   return (
     <>
-      <Divider/>
-    <View className="p-3 my-2 bg-background-100 rounded-lg border border-outline-200">
-      <VStack space="xs">
-        {entries.map(([key, value]) => (
-          <VStack key={key} space="xs">
-            <Text className="text-typography-900 text-xs font-bold text-left">
-              {key}
-            </Text>
-            <JSONTree data={formatValue(value, true)} />
-          </VStack>
-        ))}
-      </VStack>
-      <VStack className="gap-2 my-5">
-        <Button onPress={load}>
-          <ButtonText>Refresh Storage</ButtonText>
-        </Button>
-        <Button onPress={clearAndReload}>
-          <ButtonText>Delete Storage</ButtonText>
-        </Button>
-      </VStack>
+      <Divider />
+      <View className="p-3 my-2 bg-background-100 rounded-lg border border-outline-200">
+        <VStack space="xs">
+          {entries.map(([key, value]) => (
+            <VStack key={key} space="xs">
+              <Text className="text-typography-900 text-xs font-bold text-left">
+                {key}
+              </Text>
+              <JSONTree data={formatValue(value, true)} />
+            </VStack>
+          ))}
+        </VStack>
+        <VStack className="gap-2 my-5">
+          <Button onPress={load}>
+            <ButtonText>Refresh Storage</ButtonText>
+          </Button>
+          <Button onPress={clearAndReload}>
+            <ButtonText>Delete Storage</ButtonText>
+          </Button>
+        </VStack>
       </View>
-      </>  
+    </>
   );
 }
