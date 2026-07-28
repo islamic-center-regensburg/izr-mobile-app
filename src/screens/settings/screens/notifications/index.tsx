@@ -5,6 +5,7 @@ import { HStack } from "@/src/components/hstack";
 import { Switch } from "@/src/components/switch";
 import { Text } from "@/src/components/text";
 import { VStack } from "@/src/components/vstack";
+import { colors } from "@/src/constants/colors";
 import { NOTIFIABLE_PRAYERS } from "@/src/notifications/scheduler/constants";
 import { ModalScreen } from "@/src/screens/common/modal-screen";
 import { useNotificationSettingsStore } from "@/src/store/notification-settings";
@@ -24,6 +25,8 @@ function PrayerNotificationRow({ prayer }: { prayer: PrayerName }) {
       <Switch
         value={enabled[prayer]}
         onValueChange={(value) => setEnabled(prayer, value)}
+        thumbColor={"white"}
+        trackColor={{ true: colors.primary }}
       />
     </HStack>
   );
