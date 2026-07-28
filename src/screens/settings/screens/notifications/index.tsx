@@ -6,7 +6,6 @@ import { Switch } from "@/src/components/switch";
 import { Text } from "@/src/components/text";
 import { VStack } from "@/src/components/vstack";
 import { NOTIFIABLE_PRAYERS } from "@/src/notifications/scheduler/constants";
-import { scheduleTestNotification } from "@/src/notifications/scheduler/schedule-one";
 import { ModalScreen } from "@/src/screens/common/modal-screen";
 import { useNotificationSettingsStore } from "@/src/store/notification-settings";
 import { PrayerName } from "@/src/store/notifications";
@@ -36,7 +35,6 @@ export function NotificationsScreen() {
   const { setFirstTimeExactAlarmAccessPrompted } =
     useNotificationSettingsStore();
 
-  const notificationScheduleTimes = [0, 1, 2, 4, 6, 8, 10];
   return (
     <ModalScreen>
       <View className="flex-1 px-4 gap-6 py-4 bg-white">
@@ -67,13 +65,6 @@ export function NotificationsScreen() {
               </VStack>
             </>
           )}
-          <Divider className="border-t border-gray-300 my-4" />
-          <Text>Test Notification Schedules</Text>
-          {notificationScheduleTimes.map((time) => (
-            <Button key={time} onPress={() => scheduleTestNotification(time)}>
-              <ButtonText>{time} min</ButtonText>
-            </Button>
-          ))}
         </View>
       </View>
     </ModalScreen>
