@@ -100,5 +100,22 @@ export default {
       description:
         "Stay connected with us on social media and our website for the latest updates, events, and community news.",
     },
+    "donation-section": {
+      title: "Donations",
+      description:
+        "Your donation helps us maintain the mosque, provide educational activities, and support community initiatives. Every contribution matters.",
+      iban: {
+        description: "IBAN",
+        value : "DE30 7505 0000 0026 7651 56"
+      },
+      bic: {
+        description: "BIC",
+        value: "BYLADEM1RBG"
+      },
+      "account-holder": {
+        description: "Account Holder",
+        value: "Islamisches Zentrum Regensburg"
+      },
+    },
   },
 } as const;

@@ -6,6 +6,7 @@ import AboutSection from "./components/about-section";
 import ContactSection from "./components/contact-section";
 import CurrentDate from "./components/current-date";
 import { DayTabs } from "./components/day-tabs";
+import DonationSection from "./components/donate-section";
 import FollowUsSection from "./components/follow-us-section";
 import NextPrayer from "./components/next-prayer";
 import PrayerTimes from "./components/prayer-times";
@@ -29,6 +30,7 @@ const HomeScreen = () => {
         <AboutSection />
         <FollowUsSection />
         <ContactSection />
+        <DonationSection />
       </VStack>
     </AppScreen>
   );

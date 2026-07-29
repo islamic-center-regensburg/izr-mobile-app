@@ -104,5 +104,22 @@ export default {
       description:
         "Bleibe über soziale Medien und unsere Website mit uns in Verbindung, um die neuesten Updates, Veranstaltungen und Neuigkeiten aus der Gemeinschaft zu erhalten.",
     },
+    "donation-section": {
+      title: "Spenden",
+      description:
+        "Mit Ihrer Spende helfen Sie uns, den Moscheebetrieb, Bildungsangebote und soziale Projekte aufrechtzuerhalten. Jeder Beitrag zählt.",
+      iban: {
+        description: "IBAN",
+        value : "DE30 7505 0000 0026 7651 56"
+      },
+      bic: {
+        description: "BIC",
+        value: "BYLADEM1RBG"
+      },
+      "account-holder": {
+        description: "Kontoinhaber",
+        value: "Islamisches Zentrum Regensburg"
+      },
+    },
   },
 } as const;
