@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Platform } from "react-native";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { PrayerName } from "./notifications";
@@ -20,7 +21,7 @@ interface NotificationSettingsState {
 // sunrise defaults to off since it's not a prayer you pray, just a marker
 const DEFAULT_ENABLED: PrayerNotificationSettings = {
   fajr: true,
-  sunrise: false,
+  shuruq: false,
   dhuhr: true,
   asr: true,
   maghrib: true,
@@ -31,14 +32,8 @@ const notificationSettingsStore = create<NotificationSettingsState>()(
   persist(
     (set, get) => ({
       enabled: DEFAULT_ENABLED,
-      // Tracks whether the user has granted Android's "Alarms & reminders"
-      // (SCHEDULE_EXACT_ALARM) permission. There's no JS API to query this
-      // directly from the OS, so we track the user's self-reported/assumed
-      // state here — set to true after they return from the settings screen
-      // via openExactAlarmSettings(), used to decide whether to show a
-      // "fix notification timing" prompt in the notifications settings UI.
-      exactAlarmAccessGranted: false,
-      firstTimeExactAlarmAccessPrompted: false,
+      exactAlarmAccessGranted: Platform.OS === "ios" ? true : false,
+      firstTimeExactAlarmAccessPrompted: Platform.OS === "ios" ? true : false,
       hydrated: false,
 
       setEnabled: (prayer, enabled) =>
@@ -68,8 +63,9 @@ const notificationSettingsStore = create<NotificationSettingsState>()(
         if (!raw) {
           notificationSettingsStore.setState({
             enabled: DEFAULT_ENABLED,
-            exactAlarmAccessGranted: false,
-            firstTimeExactAlarmAccessPrompted: false,
+            exactAlarmAccessGranted: Platform.OS === "ios" ? true : false,
+            firstTimeExactAlarmAccessPrompted:
+              Platform.OS === "ios" ? true : false,
           });
         }
       },

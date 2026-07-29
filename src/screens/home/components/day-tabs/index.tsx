@@ -14,7 +14,10 @@ export const DayTabs = ({
   const { t } = useTranslation();
 
   return (
-    <HStack space="sm" className="bg-background-200 rounded-full p-1 px-auto w-auto mx-auto">
+    <HStack
+      space="sm"
+      className="bg-background-200 rounded-full p-1 px-auto w-auto mx-auto"
+    >
       {(["today", "tomorrow"] as const).map((day) => (
         <Button
           key={day}
@@ -24,13 +27,11 @@ export const DayTabs = ({
             activeDay === day ? "bg-white" : "bg-transparent",
           )}
         >
-              <ButtonText
-                  size="xs"
+          <ButtonText
+            size="xs"
             className={cn(
               "font-sans-medium",
-              activeDay === day
-                ? "text-typography-900"
-                : "text-typography-500",
+              activeDay === day ? "text-typography-900" : "text-typography-500",
             )}
           >
             {t(`home-screen.${day}`)}

@@ -6,6 +6,7 @@ import { View } from "react-native";
 import { useFontSizeStore } from "../store/font-size";
 import { useLangStore } from "../store/lang";
 import { Button, ButtonText } from "./button";
+import { Divider } from "./divider";
 import { Text } from "./text";
 import { VStack } from "./vstack";
 
@@ -43,26 +44,31 @@ export function StorageDebug() {
     }
   }
 
+  if (process.env.EXPO_PUBLIC_STAGE === "prod") return null;
+
   return (
-    <View className="p-3 bg-background-100 rounded-lg border border-outline-200">
-      <VStack space="xs">
-        {entries.map(([key, value]) => (
-          <VStack key={key} space="xs">
-            <Text className="text-typography-900 text-xs font-bold text-left">
-              {key}
-            </Text>
-            <JSONTree data={formatValue(value, true)} />
-          </VStack>
-        ))}
-      </VStack>
-      <VStack className="gap-2 my-5">
-        <Button onPress={load}>
-          <ButtonText>Refresh Storage</ButtonText>
-        </Button>
-        <Button onPress={clearAndReload}>
-          <ButtonText>Delete Storage</ButtonText>
-        </Button>
-      </VStack>
-    </View>
+    <>
+      <Divider />
+      <View className="p-3 my-2 bg-background-100 rounded-lg border border-outline-200">
+        <VStack space="xs">
+          {entries.map(([key, value]) => (
+            <VStack key={key} space="xs">
+              <Text className="text-typography-900 text-xs font-bold text-left">
+                {key}
+              </Text>
+              <JSONTree data={formatValue(value, true)} />
+            </VStack>
+          ))}
+        </VStack>
+        <VStack className="gap-2 my-5">
+          <Button onPress={load}>
+            <ButtonText>Refresh Storage</ButtonText>
+          </Button>
+          <Button onPress={clearAndReload}>
+            <ButtonText>Delete Storage</ButtonText>
+          </Button>
+        </VStack>
+      </View>
+    </>
   );
 }

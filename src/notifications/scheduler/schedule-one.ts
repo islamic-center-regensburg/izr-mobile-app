@@ -7,7 +7,7 @@ import {
   PrayerName,
 } from "@/src/store/notifications";
 import * as Notifications from "expo-notifications";
-import { ADHAN_CHANNEL_ID } from "..";
+import { ADHAN_CHANNEL_ID, DEFAULT_CHANNEL_ID } from "..";
 import { cancelExisting } from "./cancel-exisiting";
 
 export async function scheduleOne(
@@ -26,28 +26,36 @@ export async function scheduleOne(
     `Scheduling notification for ${day} ${prayer} at ${new Date(timestamp).toLocaleTimeString()}`,
   );
 
-  const lang = langStore.getState().lang; // zustand vanilla getState, no hook needed
-  const prayerLabel = i18n.t(`common.prayer-names.${prayer as APIPrayerName}`, {
-    lng: lang,
-  });
+  const isShuruq = prayer === "shuruq";
+  const lang = langStore.getState().lang;
+  const prayerLabel = i18n.t(
+    `common.prayer-names.${prayer as APIPrayerName | "shuruq"}`,
+    {
+      lng: lang,
+    },
+  );
 
   try {
     const notificationId = await Notifications.scheduleNotificationAsync({
       content: {
-        title: i18n.t("notifications.adhanTitle", {
-          lng: lang,
-          prayer: prayerLabel,
-        }),
-        body: i18n.t("notifications.adhanBody", {
-          lng: lang,
-          prayer: prayerLabel,
-        }),
-        // sound: "abdul_basit.wav",
+        title: isShuruq
+          ? prayerLabel
+          : i18n.t("notifications.adhanTitle", {
+              lng: lang,
+              prayer: prayerLabel,
+            }),
+        body: isShuruq
+          ? ""
+          : i18n.t("notifications.adhanBody", {
+              lng: lang,
+              prayer: prayerLabel,
+            }),
+        sound: isShuruq ? "default" : "abdul_basit.wav",
       },
       trigger: {
         type: Notifications.SchedulableTriggerInputTypes.DATE,
         date: new Date(timestamp),
-        channelId: ADHAN_CHANNEL_ID,
+        channelId: isShuruq ? DEFAULT_CHANNEL_ID : ADHAN_CHANNEL_ID,
       },
     });
 

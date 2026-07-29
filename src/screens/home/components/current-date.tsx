@@ -37,7 +37,7 @@ const CurrentDate = (props: CurrentDateProps) => {
           <Text className="text-black">{prayerTimes?.gregorian_date}</Text>
         </HStack>
         <HStack className="w-full justify-between">
-          <Text className="text-black">{t("common.prayer-names.sunrise")}</Text>
+          <Text className="text-black">{t("common.prayer-names.shuruq")}</Text>
           <Text className="text-black">{prayerTimes?.shuruq}</Text>
         </HStack>
       </VStack>

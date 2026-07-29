@@ -1,7 +1,6 @@
 // screens/settings/index.tsx
 
 import { NestedKeyOf, TranslationKeys } from "@/i18n-env";
-import { Divider } from "@/src/components/divider";
 import Glassy from "@/src/components/glassy";
 import { HStack } from "@/src/components/hstack";
 import { StorageDebug } from "@/src/components/storage-debug";
@@ -58,7 +57,6 @@ export function SettingsScreen() {
               </Pressable>
             </Glassy>
           ))}
-          <Divider className="my-4" />
           <StorageDebug />
         </View>
       </View>
