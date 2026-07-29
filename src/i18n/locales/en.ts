@@ -59,5 +59,46 @@ export default {
     hours: "h",
     min: "min",
     sec: "sec",
+    "about-section": {
+      title: "About the IZR",
+      description: {
+        section1:
+          "The Islamic Center Regensburg (IZR) – the Ar-Rahman Mosque – has long been a living, breathing home for Muslims and anyone curious to connect. Right in the heart of Regensburg, at Alte Straubinger Straße 33, 93055 Regensburg, we've built a place of prayer, warmth, and genuine community.",
+        section2:
+          "Every day we pray together — Fajr, Dhuhr, Asr, Maghrib, and Isha — and Jumu'ah brings our community together every Friday. Beyond prayers, we organize events, learning circles, and activities for all ages. Prayer times, news, and reminders are always just a tap away in our app.",
+        section3:
+          "Openness isn't just a value for us — it's something we live. On Open Mosque Day and beyond, we welcome everyone who's curious: come in, ask questions, have a conversation. Our imams and team are always happy to meet you where you are.",
+      },
+    },
+    "contact-section": {
+      title: "Contact Us",
+      description: {
+        "first-chairman": {
+          name: "First Chairman",
+          personName: "Harethe El Ouadhane",
+          email: "h.elouadhane@iz-regensburg.de",
+          tel: "+49 176 60800940",
+        },
+        board: {
+          name: "Board",
+          email: "vorstand@iz-regensburg.de",
+        },
+        it: {
+          name: "App / Website / IT",
+          personName: "Mohamed Amine Bellil",
+          email: "mohamed.bellil@iz-regensburg.de",
+        },
+        "room-reservation": {
+          name: "Room Reservation",
+          personName: "Najeh Bouzgarrou",
+          email: "n.bouzgarrou@iz-regensburg.de",
+        },
+      },
+    },
+    "follow-us-section": {
+      title: "Follow Us",
+      description:
+        "Stay connected with us on social media and our website for the latest updates, events, and community news.",
+    },
   },
 } as const;

@@ -63,5 +63,46 @@ export default {
     hours: "h",
     min: "min",
     sec: "sek",
+    "about-section": {
+      title: "Über das IZR",
+      description: {
+        section1:
+          "Das Islamische Zentrum Regensburg (IZR) – die Ar-Rahman-Moschee – ist seit vielen Jahren ein lebendiger Treffpunkt für Muslime und alle, die uns kennenlernen möchten. Mitten in Regensburg, in der Alten Straubinger Straße 33, 93055 Regensburg, haben wir ein Zuhause für Gebet, Begegnung und Gemeinschaft geschaffen.",
+        section2:
+          "Bei uns wird jeden Tag gemeinsam gebetet – Fajr, Dhuhr, Asr, Maghrib und Isha – und das Freitagsgebet bringt unsere Gemeinschaft regelmäßig zusammen. Neben den Gebeten organisieren wir Veranstaltungen, Bildungsangebote und Aktivitäten für Jung und Alt. Aktuelle Gebetszeiten, Neuigkeiten und Erinnerungen findest du jederzeit bequem in unserer App.",
+        section3:
+          "Uns ist Offenheit wichtig – nicht nur als Wort, sondern gelebt. Beim 'Tag der offenen Moschee' heißen wir alle Neugierigen herzlich willkommen: Schau rein, stell Fragen, komm ins Gespräch. Unsere Imame und das Team sind immer für dich da.",
+      },
+    },
+    "contact-section": {
+      title: "Kontakt",
+      description: {
+        "first-chairman": {
+          name: "Erster Vorstand",
+          personName: "Harethe El Ouadhane",
+          email: "h.elouadhane@iz-regensburg.de",
+          tel: "+49 176 60800940",
+        },
+        board: {
+          name: "Vorstand",
+          email: "vorstand@iz-regensburg.de",
+        },
+        it: {
+          name: "App / Website / IT",
+          personName: "Mohamed Amine Bellil",
+          email: "mohamed.bellil@iz-regensburg.de",
+        },
+        "room-reservation": {
+          name: "Raumreservierung",
+          personName: "Najeh Bouzgarrou",
+          email: "n.bouzgarrou@iz-regensburg.de",
+        },
+      },
+    },
+    "follow-us-section": {
+      title: "Folge uns",
+      description:
+        "Bleibe über soziale Medien und unsere Website mit uns in Verbindung, um die neuesten Updates, Veranstaltungen und Neuigkeiten aus der Gemeinschaft zu erhalten.",
+    },
   },
 } as const;

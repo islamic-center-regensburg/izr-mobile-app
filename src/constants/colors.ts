@@ -1,3 +1,3 @@
 export const colors = {
-    primary: "rgba(39, 75, 64)"
-}
+  primary: "rgb(39, 75, 64)",
+};
