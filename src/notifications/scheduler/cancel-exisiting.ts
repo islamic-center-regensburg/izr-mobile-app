@@ -10,8 +10,12 @@ export async function cancelExisting(day: NotificationDay, prayer: PrayerName) {
     day,
     prayer,
   );
+
   if (existing?.notificationId) {
     try {
+      console.log(
+        `Cancelling existing notification for ${day} ${prayer} with ID ${existing.notificationId}`,
+      );
       await Notifications.cancelScheduledNotificationAsync(
         existing.notificationId,
       );

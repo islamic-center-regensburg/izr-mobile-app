@@ -110,15 +110,15 @@ export default {
         "Mit Ihrer Spende helfen Sie uns, den Moscheebetrieb, Bildungsangebote und soziale Projekte aufrechtzuerhalten. Jeder Beitrag zählt.",
       iban: {
         description: "IBAN",
-        value : "DE30 7505 0000 0026 7651 56"
+        value: "DE30 7505 0000 0026 7651 56",
       },
       bic: {
         description: "BIC",
-        value: "BYLADEM1RBG"
+        value: "BYLADEM1RBG",
       },
       "account-holder": {
         description: "Kontoinhaber",
-        value: "Islamisches Zentrum Regensburg"
+        value: "Islamisches Zentrum Regensburg",
       },
     },
   },

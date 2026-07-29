@@ -82,5 +82,4 @@ export async function scheduleOne(
 export async function scheduleTestNotification(minutesFromNow = 3) {
   const timestamp = Date.now() + minutesFromNow * 60 * 1000;
   await scheduleOne("today", "fajr", timestamp);
-  console.log("Scheduled for:", new Date(timestamp).toString());
 }

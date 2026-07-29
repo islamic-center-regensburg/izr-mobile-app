@@ -6,7 +6,6 @@ import { Mail, Phone, User } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
 import { Linking, StyleSheet, View } from "react-native";
 
-
 const ContactSection = () => {
   const { t } = useTranslation();
   const sections = [
@@ -25,13 +24,27 @@ const ContactSection = () => {
         </View>
         <View className="flex flex-row gap-2 items-center">
           <Mail size={"15"} className="mr-2" />
-          <Text onPress={() => Linking.openURL(`mailto:${t("home-screen.contact-section.description.first-chairman.email")}`)} className="text-left">
+          <Text
+            onPress={() =>
+              Linking.openURL(
+                `mailto:${t("home-screen.contact-section.description.first-chairman.email")}`,
+              )
+            }
+            className="text-left"
+          >
             {t("home-screen.contact-section.description.first-chairman.email")}
           </Text>
         </View>
         <View className="flex flex-row gap-2 items-center">
           <Phone size={"15"} className="mr-2" />
-          <Text onPress={() => Linking.openURL(`tel:${t("home-screen.contact-section.description.first-chairman.tel")}`)} className="text-left">
+          <Text
+            onPress={() =>
+              Linking.openURL(
+                `tel:${t("home-screen.contact-section.description.first-chairman.tel")}`,
+              )
+            }
+            className="text-left"
+          >
             {t("home-screen.contact-section.description.first-chairman.tel")}
           </Text>
         </View>
@@ -48,7 +61,14 @@ const ContactSection = () => {
         </View>
         <View className="flex flex-row gap-2 items-center">
           <Mail size={"15"} className="mr-2" />
-          <Text onPress={() => Linking.openURL(`mailto:${t("home-screen.contact-section.description.it.email")}`)} className="text-left">
+          <Text
+            onPress={() =>
+              Linking.openURL(
+                `mailto:${t("home-screen.contact-section.description.it.email")}`,
+              )
+            }
+            className="text-left"
+          >
             {t("home-screen.contact-section.description.it.email")}
           </Text>
         </View>
@@ -69,7 +89,14 @@ const ContactSection = () => {
         </View>
         <View className="flex flex-row gap-2 items-center">
           <Mail size={"15"} className="mr-2" />
-          <Text onPress={() => Linking.openURL(`mailto:${t("home-screen.contact-section.description.room-reservation.email")}`)} className="text-left">
+          <Text
+            onPress={() =>
+              Linking.openURL(
+                `mailto:${t("home-screen.contact-section.description.room-reservation.email")}`,
+              )
+            }
+            className="text-left"
+          >
             {t(
               "home-screen.contact-section.description.room-reservation.email",
             )}

@@ -1,11 +1,9 @@
-import * as Notifications from "expo-notifications";
 import { useTranslation } from "react-i18next";
 
 import { useExactAlarmPrompt } from "../hooks/use-exact-alarm-prompt";
 import { useNotificationScheduler } from "../hooks/use-notification-scheduler";
 import { openExactAlarmSettings, setupNotifications } from "../notifications";
 import { useNotificationSettingsStore } from "../store/notification-settings";
-import { useNotificationsSchedulerStore } from "../store/notifications";
 import { Button, ButtonText } from "./button";
 import { Heading } from "./heading";
 import {
@@ -23,16 +21,12 @@ export function ExactAlarmPrompt() {
   const { visible, dismiss } = useExactAlarmPrompt();
   const { setExactAlarmAccessGranted } = useNotificationSettingsStore();
   const { rescheduleAll } = useNotificationScheduler();
-  const { clearAll } = useNotificationsSchedulerStore();
 
   const handleConfirm = async () => {
     dismiss();
     await openExactAlarmSettings();
     await setupNotifications();
-    await Notifications.cancelAllScheduledNotificationsAsync();
-    clearAll();
     setExactAlarmAccessGranted(true);
-    await rescheduleAll();
   };
 
   return (

@@ -12,6 +12,7 @@ import { useNotificationSettingsStore } from "@/src/store/notification-settings"
 import { PrayerName } from "@/src/store/notifications";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
+import TestNotification from "./test-notification";
 
 function PrayerNotificationRow({ prayer }: { prayer: PrayerName }) {
   const { t } = useTranslation();
@@ -69,6 +70,7 @@ export function NotificationsScreen() {
             </>
           )}
         </View>
+        <TestNotification />
       </View>
     </ModalScreen>
   );

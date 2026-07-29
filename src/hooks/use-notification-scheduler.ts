@@ -10,6 +10,8 @@ import {
 import { schedulePrayerNotificationsForDay } from "../notifications/scheduler/schedule-for-day";
 import { usePrayerTimesForDay } from "../store/prayer-times";
 
+let notificationSchedulerRun: Promise<void> | null = null;
+
 export function useNotificationScheduler() {
   const { prayerTimes: todayTimes } = usePrayerTimesForDay("today");
   const { prayerTimes: tomorrowTimes } = usePrayerTimesForDay("tomorrow");
@@ -17,22 +19,33 @@ export function useNotificationScheduler() {
   const prevEnabledRef = useRef(enabled);
 
   const runScheduling = useCallback(async () => {
-    const { status } = await Notifications.getPermissionsAsync();
-    if (status !== "granted") {
-      const req = await Notifications.requestPermissionsAsync();
-      if (req.status !== "granted") return;
+    if (notificationSchedulerRun) {
+      return notificationSchedulerRun;
     }
 
-    if (!exactAlarmAccessGranted) return;
+    const run = (async () => {
+      const { status } = await Notifications.getPermissionsAsync();
+      if (status !== "granted") {
+        const req = await Notifications.requestPermissionsAsync();
+        if (req.status !== "granted") return;
+      }
+      if (!exactAlarmAccessGranted) return;
 
-    await Promise.all([
-      schedulePrayerNotificationsForDay("today", todayTimes),
-      schedulePrayerNotificationsForDay("tomorrow", tomorrowTimes),
-    ]);
+      await Promise.all([
+        schedulePrayerNotificationsForDay("today", todayTimes),
+        schedulePrayerNotificationsForDay("tomorrow", tomorrowTimes),
+      ]);
 
-    const stamp = getTodayString();
-    notificationsSchedulerActions.setLastScheduledDate("today", stamp);
-    notificationsSchedulerActions.setLastScheduledDate("tomorrow", stamp);
+      const stamp = getTodayString();
+      notificationsSchedulerActions.setLastScheduledDate("today", stamp);
+      notificationsSchedulerActions.setLastScheduledDate("tomorrow", stamp);
+    })();
+
+    notificationSchedulerRun = run.finally(() => {
+      notificationSchedulerRun = null;
+    });
+
+    return notificationSchedulerRun;
   }, [todayTimes, tomorrowTimes, exactAlarmAccessGranted]);
 
   useEffect(() => {
@@ -46,7 +59,7 @@ export function useNotificationScheduler() {
 
     if (!settingsChanged && !dayStale) return;
 
-    runScheduling();
+    void runScheduling();
   }, [
     todayTimes,
     tomorrowTimes,
