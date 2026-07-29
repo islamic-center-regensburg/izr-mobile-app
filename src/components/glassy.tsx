@@ -23,7 +23,7 @@ const Glassy = ({
       style={[styles.glassy, style]}
       {...props}
     >
-      {props.children}
+      <View className={className}>{props.children}</View>
     </BlurView>
   );
 };
