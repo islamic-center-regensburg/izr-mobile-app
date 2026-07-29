@@ -102,5 +102,21 @@ export default {
       description:
         "ابق على تواصل معنا عبر وسائل التواصل الاجتماعي وموقعنا الإلكتروني للحصول على أحدث التحديثات والفعاليات والأخبار .",
     },
+    "donation-section": {
+      title: "التبرعات",
+      description: "يساعدنا تبرعكم في الحفاظ على المسجد، وتقديم الأنشطة التعليمية، ودعم المبادرات المجتمعية. كل مساهمة لها أثر.",
+      iban: {
+        description: "رقم IBAN",
+        value : "DE30 7505 0000 0026 7651 56"
+      },
+      bic: {
+        description: "رمز BIC",
+        value: "BYLADEM1RBG"
+      },
+      "account-holder": {
+        description: "صاحب الحساب",
+        value: "Islamisches Zentrum Regensburg"
+      },
+    },
   },
 } as const;
