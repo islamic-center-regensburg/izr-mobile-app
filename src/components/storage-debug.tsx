@@ -44,7 +44,7 @@ export function StorageDebug() {
     }
   }
 
-  if (process.env.EXPO_PUBLIC_STAGE === "prod") return null;
+  if (process.env.EXPO_PUBLIC_STAGE !== "dev") return null;
 
   return (
     <>
