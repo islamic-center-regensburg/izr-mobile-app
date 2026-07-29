@@ -21,7 +21,7 @@ const PrayerTimeCard = (props: PrayerTimeCardProps) => {
   const { nextPrayer } = useNextPrayer();
   const shouldHighlight =
     nextPrayer?.name === props.prayerNameKey &&
-    props.prayerTimesDay === "today";
+    props.prayerTimesDay === (nextPrayer.isTomorrow ? "tomorrow" : "today");
   const BgComponent = !shouldHighlight ? Glassy : View; // You can replace the second Glassy with another component if needed
   return (
     <BgComponent

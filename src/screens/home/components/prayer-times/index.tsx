@@ -19,7 +19,7 @@ const PrayerTimes = (props: PrayerTimesProps) => {
   const { prayerTimes, ...prayerTimesQuery } = usePrayerTimes(
     props.prayerTimesDay,
   );
-  const { iqamaTimes, ...iqamaTimesQuery } = useIqamaTimes();
+  const { iqamaTimes, ...iqamaTimesQuery } = useIqamaTimes(props.prayerTimesDay);
 
   const { t } = useTranslation();
   const { lang } = useLangStore();
