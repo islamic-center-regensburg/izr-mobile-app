@@ -21,7 +21,7 @@ const FollowUsSection = () => {
       icon: require("@/assets/images/social-media-icons/tiktok.png"),
     },
     {
-      url: "https://www.iz-regensburg.de",
+      url: "https://iz-regensburg.de",
       icon: require("@/assets/images/social-media-icons/globe.png"),
     },
     {
