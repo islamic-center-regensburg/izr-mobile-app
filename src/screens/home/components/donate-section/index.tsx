@@ -15,7 +15,7 @@ const DonationSection = () => {
       <Glassy className="p-4 rounded-lg">
         <Text>{t("home-screen.donation-section.description")}</Text>
         <VStack className="gap-2 mt-2">
-          <Glassy className="bg-neutral-400 p-4">
+          <Glassy className="bg-primary-500/70 p-4">
             <Text className="text-white">
               {t("home-screen.donation-section.account-holder.description")}
             </Text>
@@ -23,7 +23,7 @@ const DonationSection = () => {
               {t("home-screen.donation-section.account-holder.value")}
             </Text>
           </Glassy>
-          <Glassy className="bg-neutral-400  p-4">
+          <Glassy className="bg-primary-500/70  p-4">
             <Text className="text-white">
               {t("home-screen.donation-section.iban.description")}
             </Text>
@@ -31,7 +31,7 @@ const DonationSection = () => {
               {t("home-screen.donation-section.iban.value")}
             </Text>
           </Glassy>
-          <Glassy className="bg-neutral-400 p-4">
+          <Glassy className="bg-primary-500/70 p-4">
             <Text className="text-white">
               {t("home-screen.donation-section.bic.description")}
             </Text>

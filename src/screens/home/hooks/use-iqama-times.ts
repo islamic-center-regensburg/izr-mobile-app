@@ -80,7 +80,7 @@ export function useIqamaTimes(prayerTimesday: PrayerTimesDay) {
     isLoading: isPrayerTimesLoading,
     isError: isPrayerTimesError,
     error: prayerTimesError,
-    } = usePrayerTimes(prayerTimesday);
+  } = usePrayerTimes(prayerTimesday);
 
   // ── Step 1: fetch iqama times only if cache is invalid ────────────
   const { data: fetchedIqamaTimes, ...iqamaTimesQuery } = useSuspenseQuery({

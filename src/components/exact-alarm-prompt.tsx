@@ -18,7 +18,7 @@ import { VStack } from "./vstack";
 
 export function ExactAlarmPrompt() {
   useNotificationScheduler();
-  
+
   const { t } = useTranslation();
   const { visible, dismiss } = useExactAlarmPrompt();
   const { setExactAlarmAccessGranted } = useNotificationSettingsStore();

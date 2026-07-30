@@ -11,12 +11,12 @@ const ContactSection = () => {
   const sections = [
     <View className="px-2 flex-1">
       <Glassy className="p-4 rounded-lg h-full">
-        <Text>
+        <Text className="flex-1">
           {t("home-screen.contact-section.description.first-chairman.name")}
         </Text>
         <View className="flex flex-row gap-2 items-center">
           <User size={"15"} className="mr-2" />
-          <Text className="text-left">
+          <Text className="text-left w-full">
             {t(
               "home-screen.contact-section.description.first-chairman.personName",
             )}

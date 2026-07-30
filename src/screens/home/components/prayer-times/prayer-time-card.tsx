@@ -7,7 +7,7 @@ import { PrayerTimesDay } from "@/src/store/prayer-times";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
-import { useNextPrayer } from "../../hooks/user-next-prayer";
+import { useNextPrayer } from "../../hooks/use-next-prayer";
 
 interface PrayerTimeCardProps {
   prayerNameKey: PrayerNameKey;
