@@ -1,11 +1,10 @@
-import { PostContentType } from "@/src/api/gen";
 import { getMosquesQueryOptions } from "@/src/api/mosque/queries";
 import { getAllPostsQueryOptions } from "@/src/api/post/queries";
 import { useLangStore } from "@/src/store/lang";
 import { useMosqueStore } from "@/src/store/mosque";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
-export const usePosts = (type: PostContentType) => {
+export const usePosts = () => {
   const { lang } = useLangStore();
   const { mosque: izrMosqueName } = useMosqueStore();
   const { data: mosques } = useSuspenseQuery(
@@ -15,7 +14,7 @@ export const usePosts = (type: PostContentType) => {
   const { data: posts } = useSuspenseQuery(
     getAllPostsQueryOptions({
       mosque_id: izrMosque?.id ?? "",
-      query: { language: lang, content_type: type },
+      query: { language: lang },
     }),
   );
   const validPosts = posts?.data.filter((post) => post.translations.length > 0);

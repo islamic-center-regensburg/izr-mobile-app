@@ -12,11 +12,9 @@ export function ModalScreen({ children, style, ...props }: ModalScreenProps) {
 
   return (
     <View className="flex-1 bg-white">
+      <View style={{ paddingTop: isAndroid ? insets.top : 0 }} />
       <ScrollView className="flex-1" style={style} {...props}>
-        <View
-          className="bg-white"
-          style={{ flex: 1, paddingTop: isAndroid ? insets.top : 0 }}
-        >
+        <View className="bg-white" style={{ flex: 1 }}>
           {children}
         </View>
         <View

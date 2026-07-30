@@ -3,14 +3,16 @@ import Glassy from "@/src/components/glassy";
 import { Text } from "@/src/components/text";
 import { useLangStore } from "@/src/store/lang";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
+import { router } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { StyleSheet } from "react-native";
 interface PostProps {
+  postId: string | undefined | null;
   title: string | undefined | null;
   content: string | undefined | null;
 }
 
-const Post = ({ title, content }: PostProps) => {
+const Post = ({ postId, title, content }: PostProps) => {
   const { t } = useTranslation();
   const { lang } = useLangStore();
   return (
@@ -25,7 +27,14 @@ const Post = ({ title, content }: PostProps) => {
         className={cn("w-auto my-2", lang !== "ar" ? "ml-auto" : "mr-auto")}
         onPress={() => {}}
       >
-        <ButtonText>
+        <ButtonText
+          onPress={() =>
+            router.navigate({
+              pathname: "/(modals)/post-details",
+              params: { postId: postId },
+            })
+          }
+        >
           {t("home-screen.latest-posts-section.read-more")}
         </ButtonText>
       </Button>

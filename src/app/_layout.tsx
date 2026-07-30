@@ -28,6 +28,14 @@ export default function RootLayout() {
           <Stack>
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen
+              name="(modals)/post-details"
+              initialParams={{ postId: null }}
+              options={{
+                presentation: "modal", // iOS sheet, Android slide-up
+                headerShown: false, // or true with a close button
+              }}
+            />
+            <Stack.Screen
               name="(modals)/font-size"
               options={{
                 presentation: "modal", // iOS sheet, Android slide-up

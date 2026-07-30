@@ -7,10 +7,11 @@ import { usePosts } from "./hooks/use-posts";
 
 const LatestPosts = () => {
   const { t } = useTranslation();
-  const { posts } = usePosts("info");
+  const { posts } = usePosts();
   const postsComponents = posts.map((post) => (
     <Post
       key={post.id}
+      postId={post.id}
       title={post.translations[0].title}
       content={post.translations[0].description}
     />
