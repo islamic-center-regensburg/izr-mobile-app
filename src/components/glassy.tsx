@@ -1,6 +1,6 @@
 import { BlurView, BlurViewProps } from "expo-blur";
 import { useRef } from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 
 type GlassyProps = BlurViewProps & {
   className?: string;
@@ -9,7 +9,7 @@ type GlassyProps = BlurViewProps & {
 const Glassy = ({
   className,
   style,
-  intensity = 100,
+  intensity = Platform.OS === "android" ? 100 : 30,
   tint = "light",
   ...props
 }: GlassyProps) => {
