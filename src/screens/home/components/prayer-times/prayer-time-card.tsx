@@ -7,7 +7,7 @@ import { PrayerTimesDay } from "@/src/store/prayer-times";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
-import { useNextPrayer } from "../../hooks/user-next-prayer";
+import { useNextPrayer } from "../../hooks/use-next-prayer";
 
 interface PrayerTimeCardProps {
   prayerNameKey: PrayerNameKey;
@@ -21,7 +21,7 @@ const PrayerTimeCard = (props: PrayerTimeCardProps) => {
   const { nextPrayer } = useNextPrayer();
   const shouldHighlight =
     nextPrayer?.name === props.prayerNameKey &&
-    props.prayerTimesDay === "today";
+    props.prayerTimesDay === (nextPrayer.isTomorrow ? "tomorrow" : "today");
   const BgComponent = !shouldHighlight ? Glassy : View; // You can replace the second Glassy with another component if needed
   return (
     <BgComponent

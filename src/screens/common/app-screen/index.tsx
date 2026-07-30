@@ -9,6 +9,7 @@ interface AppScreenProps extends ViewProps {
 
 export function AppScreen({ children, style, ...props }: AppScreenProps) {
   const insets = useSafeAreaInsets();
+
   return (
     <View className="flex-1" style={style} {...props}>
       {/* Kufic pattern - top left */}
@@ -45,7 +46,7 @@ export function AppScreen({ children, style, ...props }: AppScreenProps) {
         <View style={{ height: insets.bottom + 25 }} />
       </ScrollView>
       <LinearGradient
-        colors={["rgba(60, 60, 60, 0)", "rgba(60, 60, 60, 0.35)"]}
+        colors={["rgba(60, 60, 60, 0)", "rgba(60, 60, 60, 0.55)"]}
         locations={[0, 1]}
         pointerEvents="none"
         style={{

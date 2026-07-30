@@ -9,7 +9,7 @@ import { cn } from "@gluestack-ui/utils/nativewind-utils";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, View } from "react-native";
-import { useNextPrayer } from "../hooks/user-next-prayer";
+import { useNextPrayer } from "../hooks/use-next-prayer";
 
 const formatCountdown = (
   countdown: {
@@ -34,6 +34,7 @@ const NextPrayer = () => {
   const { scale } = useFontSizeStore();
   const { rtlClass } = useRTL();
   const { t } = useTranslation();
+
   if (isLoading || !nextPrayer) {
     return (
       <Glassy style={{ height: "30%", justifyContent: "center" }}>
@@ -43,45 +44,38 @@ const NextPrayer = () => {
   }
   return (
     <Glassy style={{ padding: 10 }} className="gap-2">
-      <View className="flex-1 h-auto">
-        <Heading size="xs" className="mx-auto text-center">
-          {t("common.izr")}
-        </Heading>
-
-        <View
-          className={cn(
-            "justify-between",
-            ["lg", "md"].includes(scale)
-              ? "flex-col"
-              : cn(rtlClass, "items-end"),
-          )}
-        >
-          <VStack className="flex-1">
-            <Text>{t("common.next-prayer")}</Text>
-            <Heading size="5xl">
-              {t(`common.prayer-names.${nextPrayer?.name}`)}
-            </Heading>
-          </VStack>
-          <Heading size="5xl">{nextPrayer?.time}</Heading>
-        </View>
-        <HStack
-          className={cn(
-            "justify-between",
-            ["lg", "md"].includes(scale)
-              ? "flex-col"
-              : cn(rtlClass, "items-end"),
-          )}
-        >
-          <Text size="lg" className="flex-1 w-full">
-            {t("home-screen.remaining-time")}
-          </Text>
-          <Text size="xl" className="font-sans-regular-no-ss01">
-            {nextPrayer?.countdown
-              ? formatCountdown(nextPrayer.countdown, t)
-              : "--:--:--"}
-          </Text>
-        </HStack>
+      <Heading size="xs" className="mx-auto text-center">
+        {t("common.izr")}
+      </Heading>
+      <View
+        className={cn(
+          "justify-between",
+          ["lg", "md"].includes(scale) ? "flex-col" : cn(rtlClass, "items-end"),
+        )}
+      >
+        <VStack className="flex-1">
+          <Text>{t("common.next-prayer")}</Text>
+          <Heading size="5xl">
+            {t(`common.prayer-names.${nextPrayer.name}`)}
+          </Heading>
+        </VStack>
+        <Heading size="5xl">{nextPrayer.time}</Heading>
       </View>
+      <HStack
+        className={cn(
+          "justify-between",
+          ["lg", "md"].includes(scale) ? "flex-col" : cn(rtlClass, "items-end"),
+        )}
+      >
+        <Text size="lg" className="flex-1 w-full">
+          {t("home-screen.remaining-time")}
+        </Text>
+        <Text size="xl" className="font-sans-regular-no-ss01">
+          {nextPrayer.countdown
+            ? formatCountdown(nextPrayer.countdown, t)
+            : "--:--:--"}
+        </Text>
+      </HStack>
     </Glassy>
   );
 };

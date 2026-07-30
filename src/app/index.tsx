@@ -23,7 +23,8 @@ function LoadingFallback() {
 function IndexRedirect() {
   usePrayerTimes("today");
   usePrayerTimes("tomorrow");
-  useIqamaTimes();
+  useIqamaTimes("today");
+  useIqamaTimes("tomorrow");
 
   return <Redirect href="/home" />;
 }

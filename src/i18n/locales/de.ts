@@ -46,7 +46,7 @@ export default {
     exactAlarm: {
       title: "Zugriff auf exakte Alarme erforderlich",
       body: "Um sicherzustellen, dass Gebetsbenachrichtigungen pünktlich zugestellt werden, erteilen Sie bitte der App Zugriff auf Alarme & Erinnerungen in den Geräteeinstellungen.",
-      openSettings: "Einstellungen öffnen",
+      openSettings: "Einstellungen",
       dismiss: "Verwerfen",
     },
   },
