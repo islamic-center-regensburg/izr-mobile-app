@@ -68,7 +68,10 @@ const DonationSection = () => {
               </Text>
               <Pressable
                 onPress={() =>
-                  handleCopy(t("home-screen.donation-section.iban.value"), "iban")
+                  handleCopy(
+                    t("home-screen.donation-section.iban.value"),
+                    "iban",
+                  )
                 }
               >
                 {copiedField === "iban" ? (

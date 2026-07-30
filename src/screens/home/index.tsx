@@ -9,6 +9,7 @@ import { DayTabs } from "./components/day-tabs";
 import DonationSection from "./components/donate-section";
 import FollowUsSection from "./components/follow-us-section";
 import NextPrayer from "./components/next-prayer";
+import LatestPosts from "./components/posts-section";
 import PrayerTimes from "./components/prayer-times";
 import { useNextPrayer } from "./hooks/use-next-prayer";
 
@@ -35,6 +36,7 @@ const HomeScreen = () => {
           <CurrentDate prayerTimesDay={activeDay} />
           <PrayerTimes prayerTimesDay={activeDay} />
         </VStack>
+        <LatestPosts />
         <AboutSection />
         <FollowUsSection />
         <ContactSection />

@@ -119,5 +119,9 @@ export default {
         value: "Islamisches Zentrum Regensburg",
       },
     },
+    "latest-posts-section": {
+      title: "أحدث المنشورات",
+      "read-more": "اقرأ المزيد",
+    },
   },
 } as const;
