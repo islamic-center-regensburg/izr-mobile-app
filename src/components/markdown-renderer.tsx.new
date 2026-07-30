@@ -1,0 +1,95 @@
+import { VStack } from "@/src/components/vstack";
+import React from "react";
+import Markdown from "react-native-markdown-display";
+
+interface MarkdownRendererProps {
+  content?: string;
+  className?: string;
+}
+
+const MarkdownRenderer = ({ content = "", className }: MarkdownRendererProps) => {
+  return (
+    <VStack className={className}>
+      <Markdown
+        style={{
+          body: {
+            color: "white",
+          },
+          heading1: {
+            color: "white",
+            fontSize: 28,
+            fontWeight: "700",
+            marginTop: 12,
+            marginBottom: 6,
+          },
+          heading2: {
+            color: "white",
+            fontSize: 24,
+            fontWeight: "700",
+            marginTop: 10,
+            marginBottom: 6,
+          },
+          heading3: {
+            color: "white",
+            fontSize: 20,
+            fontWeight: "700",
+            marginTop: 8,
+            marginBottom: 4,
+          },
+          paragraph: {
+            color: "white",
+            marginTop: 4,
+            marginBottom: 4,
+          },
+          strong: {
+            fontWeight: "700",
+            color: "white",
+          },
+          em: {
+            fontStyle: "italic",
+            color: "white",
+          },
+          code_inline: {
+            color: "white",
+            backgroundColor: "rgba(255,255,255,0.15)",
+            borderRadius: 6,
+            paddingHorizontal: 6,
+            paddingVertical: 2,
+          },
+          code_block: {
+            color: "white",
+            backgroundColor: "rgba(255,255,255,0.12)",
+            borderRadius: 8,
+            padding: 10,
+            marginVertical: 6,
+          },
+          list_item: {
+            color: "white",
+            marginVertical: 2,
+          },
+          bullet_list: {
+            marginVertical: 4,
+          },
+          ordered_list: {
+            marginVertical: 4,
+          },
+          blockquote: {
+            color: "white",
+            borderLeftWidth: 3,
+            borderLeftColor: "rgba(255,255,255,0.35)",
+            paddingLeft: 10,
+            marginVertical: 6,
+          },
+          link: {
+            color: "#4DA3FF",
+            textDecorationLine: "underline",
+          },
+        }}
+      >
+        {content}
+      </Markdown>
+    </VStack>
+  );
+};
+
+export default MarkdownRenderer;

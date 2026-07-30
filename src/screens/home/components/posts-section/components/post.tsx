@@ -1,5 +1,6 @@
 import { Button, ButtonText } from "@/src/components/button";
 import Glassy from "@/src/components/glassy";
+import MarkdownRenderer from "@/src/components/markdown-renderer";
 import { Text } from "@/src/components/text";
 import { useLangStore } from "@/src/store/lang";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
@@ -15,12 +16,14 @@ interface PostProps {
 const Post = ({ postId, title, content }: PostProps) => {
   const { t } = useTranslation();
   const { lang } = useLangStore();
+  const clampContent = content?.length && content.length > 150 ? `${content.substring(0, 150)}...` : content;
   return (
     <Glassy className="p-4 rounded-lg mb-2">
       <Text size="lg" className="font-sans-bold">
         {title}
       </Text>
-      <Text className="line-clamp-3">{content}</Text>
+      {/* <Text className="line-clamp-3">{content}</Text> */}
+      <MarkdownRenderer content={clampContent ?? ""} className="line-clamp-3" />
       <Button
         size="xs"
         variant="link"

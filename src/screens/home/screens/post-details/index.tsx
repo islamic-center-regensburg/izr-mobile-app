@@ -2,8 +2,8 @@ import { Image } from "react-native";
 
 import Glassy from "@/src/components/glassy";
 import { Heading } from "@/src/components/heading";
+import MarkdownRenderer from "@/src/components/markdown-renderer";
 import SwipeableCarousel from "@/src/components/swipeable-carousel";
-import { Text } from "@/src/components/text";
 import { VStack } from "@/src/components/vstack";
 import { ModalScreen } from "@/src/screens/common/modal-screen";
 import { useLocalSearchParams } from "expo-router";
@@ -42,8 +42,9 @@ export const PostDetailsScreen = () => {
       <VStack className="gap-4 p-4 justify-center">
         <Heading size="2xl" className="mb-2 text-black">
           {translation.title}
-        </Heading>
-        <Text>{translation.description}</Text>
+              </Heading>
+              { translation.description && <MarkdownRenderer content={translation.description} />}
+        {/* <Text>{translation.description}</Text> */}
         <SwipeableCarousel items={imagesComponents ?? []} />
       </VStack>
     </ModalScreen>
